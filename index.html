@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitProgress - Ton Coach Sportif</title>
+    <title>FitProgress - Programme d'entraînement</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -36,56 +36,30 @@
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        .theme-energy {
-            --primary: #ff6b6b;
-            --primary-light: #ff8e8e;
-            --secondary: #ffb347;
-            --background: #1a1a2e;
-            --card-bg: #16213e;
-            --text: #ffffff;
-            --text-light: #b0b0b0;
-            --border: #0f3460;
-            --success: #6bbaa7;
-            --shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+        .theme-blue {
+            --primary: #3a7bd5;
+            --primary-light: #5a9bff;
+            --secondary: #00d2ff;
+            --background: #f0f8ff;
+            --card-bg: #ffffff;
+            --text: #1a3c6e;
+            --text-light: #4a6fa5;
+            --border: #c2e0ff;
+            --success: #00d2ff;
+            --shadow: 0 4px 12px rgba(58, 123, 213, 0.15);
         }
 
-        .theme-nature {
+        .theme-green {
             --primary: #2e8b57;
             --primary-light: #3cb371;
-            --secondary: #8fbc8f;
-            --background: #f5f5f5;
+            --secondary: #9acd32;
+            --background: #f0fff0;
             --card-bg: #ffffff;
-            --text: #2f4f4f;
-            --text-light: #708090;
-            --border: #dcdcdc;
+            --text: #1e5631;
+            --text-light: #4a7c59;
+            --border: #c8e6c9;
             --success: #2e8b57;
-            --shadow: 0 4px 12px rgba(46, 139, 87, 0.1);
-        }
-
-        .theme-ocean {
-            --primary: #1e90ff;
-            --primary-light: #63b8ff;
-            --secondary: #00ced1;
-            --background: #e6f3ff;
-            --card-bg: #ffffff;
-            --text: #2f4f4f;
-            --text-light: #696969;
-            --border: #b0e0e6;
-            --success: #20b2aa;
-            --shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
-        }
-
-        .theme-royal {
-            --primary: #9370db;
-            --primary-light: #ab8bdb;
-            --secondary: #ba55d3;
-            --background: #f8f6ff;
-            --card-bg: #ffffff;
-            --text: #4b0082;
-            --text-light: #6a5acd;
-            --border: #e6e6fa;
-            --success: #9370db;
-            --shadow: 0 4px 12px rgba(147, 112, 219, 0.1);
+            --shadow: 0 4px 12px rgba(46, 139, 87, 0.15);
         }
 
         * {
@@ -133,6 +107,8 @@
         nav {
             display: flex;
             gap: 15px;
+            overflow-x: auto;
+            padding: 5px 0;
         }
 
         .nav-btn {
@@ -145,6 +121,7 @@
             transition: all 0.3s ease;
             font-size: 0.9rem;
             position: relative;
+            white-space: nowrap;
         }
 
         .nav-btn.active {
@@ -631,7 +608,6 @@
             display: flex;
             gap: 10px;
             margin-top: 10px;
-            flex-wrap: wrap;
         }
 
         .theme-btn {
@@ -654,20 +630,12 @@
             background: linear-gradient(135deg, #2d2d2d 50%, #6b8cbc 50%);
         }
 
-        .theme-energy {
-            background: linear-gradient(135deg, #1a1a2e 50%, #ff6b6b 50%);
+        .theme-blue {
+            background: linear-gradient(135deg, #f0f8ff 50%, #3a7bd5 50%);
         }
 
-        .theme-nature {
-            background: linear-gradient(135deg, #f5f5f5 50%, #2e8b57 50%);
-        }
-
-        .theme-ocean {
-            background: linear-gradient(135deg, #e6f3ff 50%, #1e90ff 50%);
-        }
-
-        .theme-royal {
-            background: linear-gradient(135deg, #f8f6ff 50%, #9370db 50%);
+        .theme-green {
+            background: linear-gradient(135deg, #f0fff0 50%, #2e8b57 50%);
         }
 
         .celebration {
@@ -734,196 +702,194 @@
             font-size: 0.9rem;
         }
 
-        .day-navigation {
+        .spotify-player {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .day-btn {
-            background: none;
+        .spotify-login {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(30, 215, 96, 0.1);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .spotify-btn {
+            background-color: #1DB954;
+            color: white;
             border: none;
-            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
             cursor: pointer;
-            padding: 8px 15px;
-            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.3s ease;
+        }
+
+        .spotify-btn:hover {
+            background-color: #1ed760;
+        }
+
+        .spotify-track {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .track-cover {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .track-info {
+            flex: 1;
+        }
+
+        .track-name {
             font-weight: 500;
         }
 
-        .day-btn:hover:not(:disabled) {
-            background-color: rgba(74, 111, 165, 0.1);
+        .track-artist {
+            font-size: 0.9rem;
+            color: var(--text-light);
         }
 
-        .current-day {
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .nutrition-card {
+            background-color: rgba(107, 186, 167, 0.1);
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.2rem;
         }
 
-        .alarm-setup {
+        .nutrition-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .nutrition-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .community-post {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .community-post:last-child {
+            border-bottom: none;
+        }
+
+        .post-header {
             display: flex;
+            align-items: center;
             gap: 10px;
-            margin-top: 15px;
+            margin-bottom: 10px;
         }
 
-        .alarm-input {
-            flex: 1;
-            padding: 8px;
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .post-user {
+            font-weight: 500;
+        }
+
+        .post-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .post-content {
+            margin-bottom: 10px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .post-action i {
+            font-size: 1rem;
+        }
+
+        .advanced-settings {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .setting-group {
+            margin-bottom: 15px;
+        }
+
+        .setting-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .setting-input {
+            width: 100%;
+            padding: 10px;
             border-radius: 6px;
             border: 1px solid var(--border);
             background-color: var(--card-bg);
             color: var(--text);
         }
 
-        .mini-game {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .game-container {
-            background-color: rgba(74, 111, 165, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 15px;
-        }
-
-        .game-score {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 15px 0;
-        }
-
-        .game-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin: 5px;
-        }
-
-        .game-btn:hover {
-            background-color: var(--primary-light);
-        }
-
-        .spotify-login {
-            background-color: #1DB954;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 15px 0;
-            transition: all 0.3s ease;
-        }
-
-        .spotify-login:hover {
-            background-color: #1ed760;
-            transform: scale(1.05);
-        }
-
-        .spotify-player {
-            margin-top: 20px;
-        }
-
-        .spotify-controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .import-export {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .album-art {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            background-color: var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--text-light);
-        }
-
-        .progress-container {
-            flex: 1;
-            margin: 0 15px;
-        }
-
-        .progress-time {
+        .progress-item {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 5px;
-        }
-
-        .volume-control {
-            display: flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .volume-slider {
-            flex: 1;
-            height: 4px;
-            background-color: var(--border);
-            border-radius: 2px;
-            outline: none;
-        }
-
-        .social-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-stat {
-            text-align: center;
-            padding: 15px;
-            background-color: rgba(74, 111, 165, 0.1);
-            border-radius: 8px;
-        }
-
-        .achievement-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
+            padding: 10px 0;
             border-bottom: 1px solid var(--border);
         }
 
-        .achievement-item:last-child {
+        .progress-item:last-child {
             border-bottom: none;
         }
 
-        .achievement-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
+        .progress-date {
+            font-weight: 500;
+        }
+
+        .progress-value {
+            color: var(--success);
+            font-weight: bold;
         }
 
         @media (max-width: 600px) {
@@ -938,30 +904,22 @@
             
             nav {
                 width: 100%;
-                justify-content: space-between;
+                justify-content: flex-start;
             }
             
             .nav-btn {
-                flex: 1;
+                flex: none;
                 text-align: center;
                 font-size: 0.8rem;
-                padding: 8px 5px;
+                padding: 8px 10px;
             }
             
-            .stats-grid {
+            .stats-grid, .nutrition-grid {
                 grid-template-columns: 1fr;
             }
             
             .timer-display {
                 font-size: 2.5rem;
-            }
-            
-            .import-export {
-                flex-direction: column;
-            }
-            
-            .social-stats {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -975,57 +933,6 @@
                 font-size: 2.5rem;
                 margin: 10px 0;
             }
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary);
-            animation: confetti-fall 5s linear forwards;
-            z-index: 1000;
-        }
-
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            box-shadow: var(--shadow);
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .floating-btn:hover {
-            transform: scale(1.1);
         }
     </style>
 </head>
@@ -1045,13 +952,17 @@
                     <i class="fas fa-calendar-week"></i>
                     <span class="nav-text">Semaine</span>
                 </button>
-                <button class="nav-btn" data-page="games">
-                    <i class="fas fa-gamepad"></i>
-                    <span class="nav-text">Jeux</span>
+                <button class="nav-btn" data-page="stats">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Stats</span>
                 </button>
-                <button class="nav-btn" data-page="music">
-                    <i class="fas fa-music"></i>
-                    <span class="nav-text">Musique</span>
+                <button class="nav-btn" data-page="nutrition">
+                    <i class="fas fa-apple-alt"></i>
+                    <span class="nav-text">Nutrition</span>
+                </button>
+                <button class="nav-btn" data-page="community">
+                    <i class="fas fa-users"></i>
+                    <span class="nav-text">Communauté</span>
                 </button>
                 <button class="nav-btn" data-page="profile">
                     <i class="fas fa-user"></i>
@@ -1062,18 +973,6 @@
 
         <!-- Page d'accueil (Aujourd'hui) -->
         <div id="home" class="page active">
-            <div class="day-navigation">
-                <button class="day-btn" id="prev-day">
-                    <i class="fas fa-chevron-left"></i> Hier
-                </button>
-                <div class="current-day" id="current-day">
-                    <!-- Jour actuel -->
-                </div>
-                <button class="day-btn" id="next-day">
-                    Demain <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-
             <div class="motivation" id="daily-motivation">
                 <!-- La phrase motivante sera insérée ici par JavaScript -->
             </div>
@@ -1081,7 +980,7 @@
             <div class="card">
                 <div class="card-title">
                     <i class="fas fa-calendar-day"></i>
-                    <span id="day-title">Programme du jour</span>
+                    <span>Programme du jour</span>
                 </div>
                 
                 <div class="progress-bar">
@@ -1109,21 +1008,66 @@
                 </div>
             </div>
 
-            <!-- Alarme -->
+            <!-- Lecteur de musique -->
             <div class="card">
                 <div class="card-title">
-                    <i class="fas fa-bell"></i>
-                    <span>Alarme d'entraînement</span>
+                    <i class="fas fa-music"></i>
+                    <span>Musique d'entraînement</span>
                 </div>
-                <div class="alarm-setup">
-                    <input type="time" id="alarm-time" class="alarm-input" value="07:00">
-                    <button class="btn btn-primary" id="set-alarm">
-                        <i class="fas fa-bell"></i> Programmer
-                    </button>
+                
+                <!-- Intégration Spotify -->
+                <div class="spotify-player">
+                    <div class="spotify-login" id="spotify-login">
+                        <p>Connectez-vous à Spotify pour écouter votre musique pendant l'entraînement</p>
+                        <button class="spotify-btn" id="connect-spotify">
+                            <i class="fab fa-spotify"></i> Se connecter à Spotify
+                        </button>
+                    </div>
+                    
+                    <div id="spotify-player" style="display: none;">
+                        <div class="spotify-track">
+                            <img id="track-cover" src="" class="track-cover" alt="Cover">
+                            <div class="track-info">
+                                <div class="track-name" id="track-name">Titre de la musique</div>
+                                <div class="track-artist" id="track-artist">Artiste</div>
+                            </div>
+                        </div>
+                        <div class="music-controls">
+                            <button class="music-btn" id="prev-track">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button class="music-btn" id="play-track">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="music-btn" id="next-track">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div id="alarm-status" style="margin-top: 10px; text-align: center; color: var(--text-light);">
-                    Aucune alarme programmée
+                
+                <!-- Lecteur de musique local (fallback) -->
+                <div class="music-player" id="local-music-player">
+                    <div class="music-info">
+                        <div class="music-title" id="music-title">Aucune musique sélectionnée</div>
+                        <div class="music-artist" id="music-artist">Importer votre musique</div>
+                    </div>
+                    <div class="music-controls">
+                        <button class="music-btn" id="prev-music">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="music-btn" id="play-music">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="music-btn" id="next-music">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                    </div>
                 </div>
+                <input type="file" id="music-file" class="file-input" accept="audio/*" multiple>
+                <label for="music-file" class="file-label">
+                    <i class="fas fa-upload"></i> Importer de la musique
+                </label>
             </div>
         </div>
 
@@ -1167,141 +1111,147 @@
             </div>
         </div>
 
-        <!-- Page des jeux -->
-        <div id="games" class="page">
+        <!-- Page des statistiques -->
+        <div id="stats" class="page">
             <div class="card">
                 <div class="card-title">
-                    <i class="fas fa-dice"></i>
-                    <span>Mini-Jeux Sportifs</span>
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Statistiques de progression</span>
                 </div>
-                <p>Détends-toi entre les séances avec ces mini-jeux amusants !</p>
-            </div>
-
-            <!-- Jeu 1: Réaction -->
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-bolt"></i>
-                    <span>Test de Réaction</span>
-                </div>
-                <div class="mini-game">
-                    <p>Clique le plus vite possible quand le bouton devient vert !</p>
-                    <div class="game-container">
-                        <div id="reaction-display" style="font-size: 2rem; margin: 20px 0;">Prêt ?</div>
-                        <button class="game-btn" id="reaction-btn" disabled>Attends...</button>
-                        <div class="game-score" id="reaction-score">Temps: 0ms</div>
-                        <div>Meilleur score: <span id="best-reaction">0ms</span></div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-workouts">0</div>
+                        <div class="stat-label">Séances complétées</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-exercises">0</div>
+                        <div class="stat-label">Exercices terminés</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="current-streak">0</div>
+                        <div class="stat-label">Jours consécutifs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="completion-rate">0%</div>
+                        <div class="stat-label">Taux de complétion</div>
                     </div>
                 </div>
+                
+                <canvas id="progress-chart" height="250"></canvas>
             </div>
-
-            <!-- Jeu 2: Pompes virtuelles -->
+            
             <div class="card">
                 <div class="card-title">
-                    <i class="fas fa-hand-rock"></i>
-                    <span>Pompes Virtuelles</span>
+                    <i class="fas fa-trophy"></i>
+                    <span>Badges et récompenses</span>
                 </div>
-                <div class="mini-game">
-                    <p>Fais le plus de pompes virtuelles en 30 secondes !</p>
-                    <div class="game-container">
-                        <div class="game-score" id="pushup-count">0 pompes</div>
-                        <div id="pushup-timer" style="font-size: 1.5rem; margin: 15px 0;">30s</div>
-                        <button class="game-btn" id="start-pushup">Commencer</button>
-                        <button class="game-btn" id="do-pushup" style="display: none;">
-                            <i class="fas fa-hand-rock"></i> POMPE !
-                        </button>
-                        <div>Record: <span id="pushup-record">0 pompes</span></div>
-                    </div>
+                
+                <div class="badge-container" id="badges-container">
+                    <!-- Les badges seront insérés ici par JavaScript -->
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-history"></i>
+                    <span>Historique des séances</span>
+                </div>
+                
+                <div id="workout-history">
+                    <!-- L'historique sera inséré ici par JavaScript -->
                 </div>
             </div>
         </div>
 
-        <!-- Page Musique -->
-        <div id="music" class="page">
+        <!-- Page de nutrition -->
+        <div id="nutrition" class="page">
             <div class="card">
                 <div class="card-title">
-                    <i class="fab fa-spotify"></i>
-                    <span>Spotify - Ta musique d'entraînement</span>
+                    <i class="fas fa-apple-alt"></i>
+                    <span>Suivi nutritionnel</span>
                 </div>
-                <div id="spotify-login-section">
-                    <button class="spotify-login" id="spotify-login">
-                        <i class="fab fa-spotify"></i>
-                        Se connecter à Spotify
-                    </button>
-                    <p style="text-align: center; color: var(--text-light); font-size: 0.9rem;">
-                        Connecte-toi pour écouter tes playlists préférées
-                    </p>
+                
+                <div class="nutrition-grid">
+                    <div class="nutrition-card">
+                        <div class="nutrition-value" id="calories-consumed">0</div>
+                        <div class="nutrition-label">Calories consommées</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-value" id="calories-burned">0</div>
+                        <div class="nutrition-label">Calories brûlées</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-value" id="protein-intake">0g</div>
+                        <div class="nutrition-label">Protéines</div>
+                    </div>
+                    <div class="nutrition-card">
+                        <div class="nutrition-value" id="water-intake">0L</div>
+                        <div class="nutrition-label">Eau</div>
+                    </div>
                 </div>
-                <div id="spotify-player" style="display: none;">
-                    <div class="music-player">
-                        <div class="album-art" id="album-art">
-                            <i class="fab fa-spotify"></i>
-                        </div>
-                        <div class="music-info">
-                            <div class="music-title" id="spotify-title">Aucune musique en cours</div>
-                            <div class="music-artist" id="spotify-artist">Connecte Spotify</div>
-                            <div class="progress-container">
-                                <input type="range" id="progress-bar" class="volume-slider" value="0" max="100">
-                                <div class="progress-time">
-                                    <span id="current-time">0:00</span>
-                                    <span id="total-time">0:00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="music-controls">
-                            <button class="music-btn" id="spotify-prev">
-                                <i class="fas fa-step-backward"></i>
-                            </button>
-                            <button class="music-btn" id="spotify-play">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <button class="music-btn" id="spotify-next">
-                                <i class="fas fa-step-forward"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="volume-control">
-                        <i class="fas fa-volume-down"></i>
-                        <input type="range" id="volume-control" class="volume-slider" value="50" max="100">
-                        <i class="fas fa-volume-up"></i>
-                    </div>
-                    <div class="spotify-controls">
-                        <select id="spotify-playlists" class="alarm-input">
-                            <option value="">Sélectionne une playlist</option>
-                        </select>
-                        <button class="btn btn-primary" id="load-playlist">
-                            Charger
-                        </button>
-                    </div>
+                
+                <button class="btn btn-primary" id="add-nutrition">
+                    <i class="fas fa-plus"></i> Ajouter une entrée nutritionnelle
+                </button>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-utensils"></i>
+                    <span>Repas de la journée</span>
+                </div>
+                
+                <div id="meals-list">
+                    <!-- Les repas seront insérés ici par JavaScript -->
+                </div>
+                
+                <button class="btn btn-primary" id="add-meal" style="margin-top: 15px;">
+                    <i class="fas fa-plus"></i> Ajouter un repas
+                </button>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-book"></i>
+                    <span>Conseils nutritionnels</span>
+                </div>
+                
+                <div id="nutrition-tips">
+                    <!-- Les conseils seront insérés ici par JavaScript -->
                 </div>
             </div>
+        </div>
 
-            <!-- Musique locale -->
+        <!-- Page de communauté -->
+        <div id="community" class="page">
             <div class="card">
                 <div class="card-title">
-                    <i class="fas fa-music"></i>
-                    <span>Musique Locale</span>
+                    <i class="fas fa-users"></i>
+                    <span>Communauté FitProgress</span>
                 </div>
-                <div class="music-player">
-                    <div class="music-info">
-                        <div class="music-title" id="music-title">Aucune musique sélectionnée</div>
-                        <div class="music-artist" id="music-artist">Importer votre musique</div>
-                    </div>
-                    <div class="music-controls">
-                        <button class="music-btn" id="prev-music">
-                            <i class="fas fa-step-backward"></i>
-                        </button>
-                        <button class="music-btn" id="play-music">
-                            <i class="fas fa-play"></i>
-                        </button>
-                        <button class="music-btn" id="next-music">
-                            <i class="fas fa-step-forward"></i>
-                        </button>
-                    </div>
+                
+                <div id="community-posts">
+                    <!-- Les posts de la communauté seront insérés ici par JavaScript -->
                 </div>
-                <input type="file" id="music-file" class="file-input" accept="audio/*" multiple>
-                <label for="music-file" class="file-label">
-                    <i class="fas fa-upload"></i> Importer de la musique
-                </label>
+                
+                <div class="community-post" style="border: 1px solid var(--border); border-radius: 8px; margin-top: 15px;">
+                    <textarea class="note-textarea" id="new-post" placeholder="Partagez votre progression, posez une question ou encouragez les autres..."></textarea>
+                    <button class="btn btn-primary" id="publish-post">
+                        <i class="fas fa-paper-plane"></i> Publier
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-trophy"></i>
+                    <span>Classement de la communauté</span>
+                </div>
+                
+                <div id="community-ranking">
+                    <!-- Le classement sera inséré ici par JavaScript -->
+                </div>
             </div>
         </div>
 
@@ -1315,39 +1265,8 @@
                     <div class="profile-info">
                         <div class="profile-name" id="profile-name">Athlète</div>
                         <div class="profile-level" id="profile-level">Niveau 1 - Débutant</div>
+                        <div class="profile-points" id="profile-points">0 points</div>
                     </div>
-                </div>
-                
-                <div class="social-stats">
-                    <div class="social-stat">
-                        <div class="stat-value" id="total-followers">0</div>
-                        <div class="stat-label">Abonnés</div>
-                    </div>
-                    <div class="social-stat">
-                        <div class="stat-value" id="total-following">0</div>
-                        <div class="stat-label">Abonnements</div>
-                    </div>
-                    <div class="social-stat">
-                        <div class="stat-value" id="total-posts">0</div>
-                        <div class="stat-label">Publications</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-trophy"></i>
-                    <span>Mes Réalisations</span>
-                </div>
-                <div id="achievements-list">
-                    <!-- Les réalisations seront insérées ici -->
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-sliders-h"></i>
-                    <span>Paramètres</span>
                 </div>
                 
                 <div class="settings-option">
@@ -1372,10 +1291,8 @@
                     <div class="theme-selector">
                         <button class="theme-btn theme-light active" data-theme="light"></button>
                         <button class="theme-btn theme-dark" data-theme="dark"></button>
-                        <button class="theme-btn theme-energy" data-theme="energy"></button>
-                        <button class="theme-btn theme-nature" data-theme="nature"></button>
-                        <button class="theme-btn theme-ocean" data-theme="ocean"></button>
-                        <button class="theme-btn theme-royal" data-theme="royal"></button>
+                        <button class="theme-btn theme-blue" data-theme="blue"></button>
+                        <button class="theme-btn theme-green" data-theme="green"></button>
                     </div>
                 </div>
                 
@@ -1407,25 +1324,47 @@
             
             <div class="card">
                 <div class="card-title">
-                    <i class="fas fa-download"></i>
-                    <span>Import/Export des données</span>
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Paramètres avancés</span>
                 </div>
-                <p>Sauvegarde ou restaure tes données de progression.</p>
-                <div class="import-export">
-                    <button class="btn btn-primary" id="export-data">
-                        <i class="fas fa-file-export"></i> Exporter
+                
+                <div class="advanced-settings">
+                    <div class="setting-group">
+                        <label class="setting-label">Nom d'utilisateur</label>
+                        <input type="text" class="setting-input" id="username-input" placeholder="Votre nom d'utilisateur">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">Objectif de poids (kg)</label>
+                        <input type="number" class="setting-input" id="weight-goal" placeholder="Votre objectif de poids">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">Objectif de durée d'entraînement (min/jour)</label>
+                        <input type="number" class="setting-input" id="workout-duration-goal" placeholder="Durée d'entraînement quotidienne">
+                    </div>
+                    
+                    <button class="btn btn-primary" id="save-advanced-settings">
+                        <i class="fas fa-save"></i> Sauvegarder les paramètres
                     </button>
-                    <input type="file" id="import-file" class="file-input" accept=".json">
-                    <label for="import-file" class="btn btn-success">
-                        <i class="fas fa-file-import"></i> Importer
-                    </label>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-title">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Paramètres avancés</span>
+                    <i class="fas fa-download"></i>
+                    <span>Export des données</span>
+                </div>
+                <p>Exportez vos données de progression pour les sauvegarder ou les partager.</p>
+                <button class="btn btn-primary" id="export-data" style="margin-top: 15px;">
+                    <i class="fas fa-file-export"></i> Exporter mes données
+                </button>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Zone de danger</span>
                 </div>
                 
                 <div class="settings-option">
@@ -1438,11 +1377,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Bouton flottant pour accès rapide -->
-    <button class="floating-btn" id="quick-access">
-        <i class="fas fa-bolt"></i>
-    </button>
 
     <!-- Modal du timer -->
     <div class="modal timer-modal" id="timer-modal">
@@ -1480,469 +1414,1533 @@
     <!-- Audio pour les sons de feedback -->
     <audio id="complete-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
     <audio id="timer-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
-    <audio id="alarm-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-tone-996.mp3" loop></audio>
 
     <script>
-        // Données du programme d'entraînement avec jours spécifiques
+        // Données du programme d'entraînement
         const trainingProgram = {
             1: {
                 title: "Semaine 1 : Activation + bases",
-                days: {
-                    "Lundi": {
-                        morning: {
-                            duration: "5 min",
-                            exercises: [
-                                { name: "Pompes", reps: "12", icon: "fa-hand-rock", duration: 30 },
-                                { name: "Dips sur chaise", reps: "10", icon: "fa-chair", duration: 30 },
-                                { name: "Gainage", reps: "20 sec", icon: "fa-stopwatch", duration: 20 }
-                            ]
-                        },
-                        evening: {
-                            duration: "12-15 min",
-                            exercises: [
-                                { name: "Pompes", reps: "4×12", icon: "fa-hand-rock", duration: 45 },
-                                { name: "Dips", reps: "3×10", icon: "fa-chair", duration: 40 }
-                            ]
-                        }
-                    },
-                    "Mardi": {
-                        morning: {
-                            duration: "5 min",
-                            exercises: [
-                                { name: "Gainage", reps: "25 sec", icon: "fa-stopwatch", duration: 25 },
-                                { name: "Shoulder taps", reps: "15", icon: "fa-hands", duration: 30 }
-                            ]
-                        },
-                        evening: {
-                            duration: "12-15 min",
-                            exercises: [
-                                { name: "Gainage", reps: "3×25 sec", icon: "fa-stopwatch", duration: 25 },
-                                { name: "Pompes diamant", reps: "3×15", icon: "fa-hands", duration: 40 }
-                            ]
-                        }
-                    },
-                    "Mercredi": {
-                        morning: {
-                            duration: "5 min",
-                            exercises: [
-                                { name: "Pompes", reps: "15", icon: "fa-hand-rock", duration: 35 },
-                                { name: "Dips sur chaise", reps: "12", icon: "fa-chair", duration: 35 }
-                            ]
-                        },
-                        evening: {
-                            duration: "12-15 min",
-                            exercises: [
-                                { name: "Pompes", reps: "4×15", icon: "fa-hand-rock", duration: 45 },
-                                { name: "Dips", reps: "3×12", icon: "fa-chair", duration: 40 }
-                            ]
-                        }
-                    },
-                    "Jeudi": {
-                        morning: {
-                            duration: "5 min",
-                            exercises: [
-                                { name: "Gainage", reps: "30 sec", icon: "fa-stopwatch", duration: 30 },
-                                { name: "Shoulder taps", reps: "20", icon: "fa-hands", duration: 35 }
-                            ]
-                        },
-                        evening: {
-                            duration: "12-15 min",
-                            exercises: [
-                                { name: "Gainage", reps: "3×30 sec", icon: "fa-stopwatch", duration: 30 },
-                                { name: "Pompes diamant", reps: "3×20", icon: "fa-hands", duration: 45 }
-                            ]
-                        }
-                    },
-                    "Vendredi": {
-                        morning: {
-                            duration: "5 min",
-                            exercises: [
-                                { name: "Pompes", reps: "20", icon: "fa-hand-rock", duration: 40 },
-                                { name: "Dips sur chaise", reps: "15", icon: "fa-chair", duration: 40 }
-                            ]
-                        },
-                        evening: {
-                            duration: "12-15 min",
-                            exercises: [
-                                { name: "Pompes", reps: "5×12", icon: "fa-hand-rock", duration: 50 },
-                                { name: "Dips", reps: "4×10", icon: "fa-chair", duration: 45 }
-                            ]
-                        }
-                    },
-                    "Samedi": {
-                        morning: {
-                            duration: "5 min",
-                            exercises: [
-                                { name: "Gainage", reps: "35 sec", icon: "fa-stopwatch", duration: 35 },
-                                { name: "Shoulder taps", reps: "25", icon: "fa-hands", duration: 40 }
-                            ]
-                        },
-                        evening: {
-                            duration: "12-15 min",
-                            exercises: [
-                                { name: "Gainage", reps: "4×20 sec", icon: "fa-stopwatch", duration: 20 },
-                                { name: "Pompes diamant", reps: "4×15", icon: "fa-hands", duration: 50 }
-                            ]
-                        }
-                    },
-                    "Dimanche": {
-                        morning: {
-                            duration: "Repos",
-                            exercises: [
-                                { name: "Étirements", reps: "5 min", icon: "fa-heart", duration: 300 }
-                            ]
-                        },
-                        evening: {
-                            duration: "Repos",
-                            exercises: [
-                                { name: "Repos actif", reps: "Marche 15min", icon: "fa-walking", duration: 900 }
-                            ]
-                        }
-                    }
+                morning: {
+                    duration: "5 min",
+                    exercises: [
+                        { name: "Pompes", reps: "12", icon: "fa-hand-rock", duration: 30 },
+                        { name: "Dips sur chaise", reps: "10", icon: "fa-chair", duration: 30 },
+                        { name: "Gainage", reps: "20 sec", icon: "fa-stopwatch", duration: 20 },
+                        { name: "Shoulder taps", reps: "15", icon: "fa-hands", duration: 30 }
+                    ]
+                },
+                evening: {
+                    duration: "12-15 min",
+                    exercises: [
+                        { name: "Pompes", reps: "4×12", icon: "fa-hand-rock", duration: 45 },
+                        { name: "Dips", reps: "3×10", icon: "fa-chair", duration: 40 },
+                        { name: "Gainage", reps: "3×25 sec", icon: "fa-stopwatch", duration: 25 },
+                        { name: "Pompes diamant", reps: "3×15", icon: "fa-hands", duration: 40 }
+                    ]
                 }
             },
             2: {
                 title: "Semaine 2 : Volume + forme",
-                days: {
-                    "Lundi": {
-                        morning: {
-                            duration: "5 min",
-                            exercises: [
-                                { name: "Pompes", reps: "15", icon: "fa-hand-rock", duration: 35 },
-                                { name: "Dips", reps: "15", icon: "fa-chair", duration: 35 }
-                            ]
-                        },
-                        evening: {
-                            duration: "15-20 min",
-                            exercises: [
-                                { name: "Pompes classiques", reps: "4×15", icon: "fa-hand-rock", duration: 50 },
-                                { name: "Dips lents", reps: "4×12", icon: "fa-chair", duration: 40 }
-                            ]
-                        }
-                    },
-                    // ... Structure similaire pour les autres jours et semaines
+                morning: {
+                    duration: "5 min",
+                    exercises: [
+                        { name: "Pompes", reps: "15", icon: "fa-hand-rock", duration: 35 },
+                        { name: "Dips", reps: "15", icon: "fa-chair", duration: 35 },
+                        { name: "Gainage", reps: "30 sec", icon: "fa-stopwatch", duration: 30 },
+                        { name: "Shoulder taps", reps: "20", icon: "fa-hands", duration: 35 }
+                    ]
+                },
+                evening: {
+                    duration: "15-20 min",
+                    exercises: [
+                        { name: "Pompes classiques", reps: "4×15", icon: "fa-hand-rock", duration: 50 },
+                        { name: "Pompes diamant", reps: "4×12", icon: "fa-hands", duration: 45 },
+                        { name: "Dips lents", reps: "4×12", icon: "fa-chair", duration: 40 },
+                        { name: "Gainage", reps: "3×30 sec", icon: "fa-stopwatch", duration: 30 },
+                        { name: "Pompes écartées", reps: "3×12", icon: "fa-hands", duration: 40 }
+                    ]
+                }
+            },
+            3: {
+                title: "Semaine 3 : Hypertrophie maison",
+                morning: {
+                    duration: "5 min",
+                    exercises: [
+                        { name: "Pompes", reps: "20", icon: "fa-hand-rock", duration: 40 },
+                        { name: "Dips", reps: "15", icon: "fa-chair", duration: 35 },
+                        { name: "Gainage", reps: "40 sec", icon: "fa-stopwatch", duration: 40 },
+                        { name: "Shoulder taps", reps: "20", icon: "fa-hands", duration: 35 }
+                    ]
+                },
+                evening: {
+                    duration: "20-25 min",
+                    exercises: [
+                        { name: "Pompes", reps: "5×15-20", icon: "fa-hand-rock", duration: 60 },
+                        { name: "Dips", reps: "5×15", icon: "fa-chair", duration: 50 },
+                        { name: "Pompes diamant", reps: "4×20", icon: "fa-hands", duration: 45 },
+                        { name: "Pompes écartées", reps: "4×15", icon: "fa-hands", duration: 40 },
+                        { name: "Gainage", reps: "4×45 sec", icon: "fa-stopwatch", duration: 45 }
+                    ]
+                }
+            },
+            4: {
+                title: "Semaine 4 : Explosion du haut du corps",
+                morning: {
+                    duration: "5 min",
+                    exercises: [
+                        { name: "Pompes", reps: "25", icon: "fa-hand-rock", duration: 45 },
+                        { name: "Dips", reps: "20", icon: "fa-chair", duration: 40 },
+                        { name: "Gainage", reps: "1 min", icon: "fa-stopwatch", duration: 60 },
+                        { name: "Shoulder taps", reps: "25", icon: "fa-hands", duration: 40 }
+                    ]
+                },
+                evening: {
+                    duration: "25-30 min",
+                    exercises: [
+                        { name: "Pompes", reps: "5×20-25", icon: "fa-hand-rock", duration: 70 },
+                        { name: "Dips", reps: "5×20", icon: "fa-chair", duration: 60 },
+                        { name: "Pompes diamant", reps: "5×20", icon: "fa-hands", duration: 50 },
+                        { name: "Pompes écartées", reps: "5×15", icon: "fa-hands", duration: 45 },
+                        { name: "Gainage", reps: "5×1 min", icon: "fa-stopwatch", duration: 60 },
+                        { name: "Pompes max", reps: "3×30-40 reps", icon: "fa-fire", duration: 90 }
+                    ]
                 }
             }
         };
 
-        // Jours de la semaine
-        const daysOfWeek = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-
         // Phrases motivantes
         const motivationalPhrases = [
-            "💪 Chaque jour compte. Tu es plus fort que tu ne le penses !",
-            "🔥 La régularité est la clé du succès. Continue comme ça !",
-            "🚀 Ton corps peut supporter presque n'importe quoi. C'est ton esprit qu'il faut convaincre.",
-            "🏆 Ne t'arrête pas quand tu as mal. Arrête-toi quand tu as terminé.",
-            "⭐ Le succès est la somme de petits efforts répétés jour après jour.",
-            "🎯 La seule mauvaise séance est celle que tu n'as pas faite.",
-            "🌈 Tu n'es pas obligé d'être extrême, juste cohérent.",
-            "⚡ Le corps atteint ce que l'esprit croit.",
-            "🌟 La discipline, c'est choisir entre ce que tu veux maintenant et ce que tu veux le plus.",
-            "🚀 Ne rêve pas de réussir. Travaille pour y parvenir."
+            "Chaque jour compte. Vous êtes plus fort que vous ne le pensez !",
+            "La régularité est la clé du succès. Continuez comme ça !",
+            "Votre corps peut supporter presque n'importe quoi. C'est votre esprit qu'il faut convaincre.",
+            "Ne vous arrêtez pas quand vous avez mal. Arrêtez-vous quand vous avez terminé.",
+            "Le succès est la somme de petits efforts répétés jour après jour.",
+            "La seule mauvaise séance est celle que vous n'avez pas faite.",
+            "Vous n'êtes pas obligé d'être extrême, juste cohérent.",
+            "Le corps atteint ce que l'esprit croit.",
+            "La discipline, c'est choisir entre ce que vous voulez maintenant et ce que vous voulez le plus.",
+            "Ne rêvez pas de réussir. Travaillez pour y parvenir."
         ];
 
-        // Variables globales
+        // Badges disponibles
+        const badges = [
+            { id: "first_workout", name: "Première séance", icon: "fa-star", description: "Complétez votre première séance" },
+            { id: "week_complete", name: "Semaine terminée", icon: "fa-calendar-check", description: "Terminez une semaine complète" },
+            { id: "month_complete", name: "Mois d'entraînement", icon: "fa-trophy", description: "4 semaines d'entraînement" },
+            { id: "streak_7", name: "7 jours consécutifs", icon: "fa-fire", description: "7 jours d'entraînement sans interruption" },
+            { id: "streak_30", name: "30 jours consécutifs", icon: "fa-bolt", description: "30 jours d'entraînement sans interruption" },
+            { id: "early_bird", name: "Lève-tôt", icon: "fa-sun", description: "5 séances du matin complétées" },
+            { id: "night_owl", name: "Couche-tard", icon: "fa-moon", description: "5 séances du soir complétées" },
+            { id: "perfectionist", name: "Perfectionniste", icon: "fa-gem", description: "100% des exercices d'une semaine complétés" }
+        ];
+
+        // Éléments DOM
+        const pages = document.querySelectorAll('.page');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const dailyMotivation = document.getElementById('daily-motivation');
+        const morningExercises = document.getElementById('morning-exercises');
+        const eveningExercises = document.getElementById('evening-exercises');
+        const morningDuration = document.getElementById('morning-duration');
+        const eveningDuration = document.getElementById('evening-duration');
+        const currentWeek = document.getElementById('current-week');
+        const weekExercises = document.getElementById('week-exercises');
+        const prevWeekBtn = document.getElementById('prev-week');
+        const nextWeekBtn = document.getElementById('next-week');
+        const dailyProgress = document.getElementById('daily-progress');
+        const weeklyProgress = document.getElementById('weekly-progress');
+        const resetProgressBtn = document.getElementById('reset-progress');
+        const timerModal = document.getElementById('timer-modal');
+        const timerDisplay = document.getElementById('timer-display');
+        const timerExerciseName = document.getElementById('timer-exercise-name');
+        const startTimerBtn = document.getElementById('start-timer');
+        const stopTimerBtn = document.getElementById('stop-timer');
+        const completeExerciseBtn = document.getElementById('complete-exercise');
+        const closeTimerBtn = document.getElementById('close-timer');
+        const celebration = document.getElementById('celebration');
+        const celebrationMessage = document.getElementById('celebration-message');
+        const closeCelebrationBtn = document.getElementById('close-celebration');
+        const completeSound = document.getElementById('complete-sound');
+        const timerSound = document.getElementById('timer-sound');
+        const totalWorkoutsEl = document.getElementById('total-workouts');
+        const totalExercisesEl = document.getElementById('total-exercises');
+        const currentStreakEl = document.getElementById('current-streak');
+        const completionRateEl = document.getElementById('completion-rate');
+        const badgesContainer = document.getElementById('badges-container');
+        const workoutHistory = document.getElementById('workout-history');
+        const progressChart = document.getElementById('progress-chart');
+        const profileName = document.getElementById('profile-name');
+        const profileLevel = document.getElementById('profile-level');
+        const profilePoints = document.getElementById('profile-points');
+        const weeklyGoal = document.getElementById('weekly-goal');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const remindersToggle = document.getElementById('reminders-toggle');
+        const progressPhotos = document.getElementById('progress-photos');
+        const photoUpload = document.getElementById('photo-upload');
+        const exportDataBtn = document.getElementById('export-data');
+        const weekNotes = document.getElementById('week-notes');
+        const saveNotesBtn = document.getElementById('save-notes');
+        const musicFile = document.getElementById('music-file');
+        const musicTitle = document.getElementById('music-title');
+        const musicArtist = document.getElementById('music-artist');
+        const playMusicBtn = document.getElementById('play-music');
+        const prevMusicBtn = document.getElementById('prev-music');
+        const nextMusicBtn = document.getElementById('next-music');
+        const connectSpotifyBtn = document.getElementById('connect-spotify');
+        const spotifyLogin = document.getElementById('spotify-login');
+        const spotifyPlayer = document.getElementById('spotify-player');
+        const trackCover = document.getElementById('track-cover');
+        const trackName = document.getElementById('track-name');
+        const trackArtist = document.getElementById('track-artist');
+        const playTrackBtn = document.getElementById('play-track');
+        const prevTrackBtn = document.getElementById('prev-track');
+        const nextTrackBtn = document.getElementById('next-track');
+        const caloriesConsumed = document.getElementById('calories-consumed');
+        const caloriesBurned = document.getElementById('calories-burned');
+        const proteinIntake = document.getElementById('protein-intake');
+        const waterIntake = document.getElementById('water-intake');
+        const addNutritionBtn = document.getElementById('add-nutrition');
+        const mealsList = document.getElementById('meals-list');
+        const addMealBtn = document.getElementById('add-meal');
+        const nutritionTips = document.getElementById('nutrition-tips');
+        const communityPosts = document.getElementById('community-posts');
+        const newPost = document.getElementById('new-post');
+        const publishPostBtn = document.getElementById('publish-post');
+        const communityRanking = document.getElementById('community-ranking');
+        const usernameInput = document.getElementById('username-input');
+        const weightGoal = document.getElementById('weight-goal');
+        const workoutDurationGoal = document.getElementById('workout-duration-goal');
+        const saveAdvancedSettingsBtn = document.getElementById('save-advanced-settings');
+
+        // Variables d'état
         let currentWeekNumber = 1;
-        let currentDayIndex = new Date().getDay(); // 0=Dimanche, 1=Lundi, etc.
         let completedExercises = JSON.parse(localStorage.getItem('completedExercises')) || {};
         let workoutHistoryData = JSON.parse(localStorage.getItem('workoutHistory')) || [];
-        let userSettings = JSON.parse(localStorage.getItem('userSettings')) || {};
-        let alarmTime = localStorage.getItem('alarmTime') || null;
-        let gameScores = JSON.parse(localStorage.getItem('gameScores')) || {};
-        let spotifyToken = localStorage.getItem('spotifyToken');
+        let earnedBadges = JSON.parse(localStorage.getItem('earnedBadges')) || [];
+        let userSettings = JSON.parse(localStorage.getItem('userSettings')) || {
+            name: "Athlète",
+            weeklyGoal: 5,
+            theme: "light",
+            reminders: false,
+            username: "",
+            weightGoal: 0,
+            workoutDurationGoal: 30,
+            points: 0
+        };
+        let weekNotesData = JSON.parse(localStorage.getItem('weekNotes')) || {};
+        let progressPhotosData = JSON.parse(localStorage.getItem('progressPhotos')) || [];
+        let nutritionData = JSON.parse(localStorage.getItem('nutritionData')) || {
+            caloriesConsumed: 0,
+            caloriesBurned: 0,
+            proteinIntake: 0,
+            waterIntake: 0,
+            meals: []
+        };
+        let communityData = JSON.parse(localStorage.getItem('communityData')) || {
+            posts: [],
+            ranking: []
+        };
+        let currentTimer = null;
+        let currentExerciseId = null;
+        let timerInterval = null;
+        let timerSeconds = 0;
+        let musicFiles = [];
+        let currentMusicIndex = 0;
+        let audioPlayer = new Audio();
+        let isPlaying = false;
+        let spotifyConnected = false;
+        let spotifyPlayerInstance = null;
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
-            setupEventListeners();
-            checkAlarm();
-        });
-
-        function initializeApp() {
+            // Charger les données sauvegardées
+            loadProgress();
             loadUserSettings();
-            updateDayDisplay();
+            loadWeekNotes();
+            loadProgressPhotos();
+            loadNutritionData();
+            loadCommunityData();
+            
+            // Afficher la page d'accueil
+            showPage('home');
+            
+            // Afficher la phrase motivante du jour
             showDailyMotivation();
+            
+            // Afficher le programme du jour
             displayTodayProgram();
+            
+            // Afficher le programme de la semaine
             displayWeekProgram();
-            updateAlarmDisplay();
-            initializeSpotify();
-            loadAchievements();
-            updateSocialStats();
-        }
-
-        function updateDayDisplay() {
-            const currentDayElement = document.getElementById('current-day');
-            const dayTitleElement = document.getElementById('day-title');
-            const currentDayName = daysOfWeek[currentDayIndex];
             
-            currentDayElement.textContent = `${currentDayName} - Semaine ${currentWeekNumber}`;
-            dayTitleElement.textContent = `Programme du ${currentDayName}`;
-        }
-
-        // Gestion des jours
-        document.getElementById('prev-day').addEventListener('click', function() {
-            currentDayIndex = (currentDayIndex - 1 + 7) % 7;
-            updateDayDisplay();
-            displayTodayProgram();
+            // Afficher les statistiques
+            displayStats();
+            
+            // Afficher les badges
+            displayBadges();
+            
+            // Afficher l'historique
+            displayWorkoutHistory();
+            
+            // Afficher les données nutritionnelles
+            displayNutritionData();
+            
+            // Afficher les posts de la communauté
+            displayCommunityPosts();
+            
+            // Afficher le classement
+            displayCommunityRanking();
+            
+            // Configurer les écouteurs d'événements
+            setupEventListeners();
+            
+            // Vérifier les badges
+            checkBadges();
+            
+            // Vérifier si une semaine est terminée
+            checkWeekCompletion();
+            
+            // Mettre à jour le niveau de l'utilisateur
+            updateUserLevel();
         });
 
-        document.getElementById('next-day').addEventListener('click', function() {
-            currentDayIndex = (currentDayIndex + 1) % 7;
-            updateDayDisplay();
-            displayTodayProgram();
-        });
-
-        // Système d'alarme
-        document.getElementById('set-alarm').addEventListener('click', function() {
-            const alarmTimeValue = document.getElementById('alarm-time').value;
-            if (alarmTimeValue) {
-                alarmTime = alarmTimeValue;
-                localStorage.setItem('alarmTime', alarmTime);
-                updateAlarmDisplay();
-                alert(`Alarme programmée à ${alarmTime}`);
-            }
-        });
-
-        function updateAlarmDisplay() {
-            const alarmStatus = document.getElementById('alarm-status');
-            if (alarmTime) {
-                alarmStatus.innerHTML = `<i class="fas fa-bell"></i> Alarme programmée à ${alarmTime}`;
-                alarmStatus.style.color = 'var(--success)';
-            } else {
-                alarmStatus.innerHTML = '<i class="fas fa-bell-slash"></i> Aucune alarme programmée';
-                alarmStatus.style.color = 'var(--text-light)';
-            }
-        }
-
-        function checkAlarm() {
-            if (!alarmTime) return;
-            
-            const now = new Date();
-            const currentTime = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-            
-            if (currentTime === alarmTime) {
-                document.getElementById('alarm-sound').play();
-                if (Notification.permission === 'granted') {
-                    new Notification('FitProgress - Alarme', {
-                        body: `C'est l'heure de ton entraînement ! 💪`,
-                        icon: '/favicon.ico'
-                    });
-                }
-                
-                // Désactiver l'alarme après déclenchement
-                alarmTime = null;
-                localStorage.removeItem('alarmTime');
-                updateAlarmDisplay();
-            }
-        }
-
-        // Vérifier l'alarme toutes les minutes
-        setInterval(checkAlarm, 60000);
-
-        // Système Spotify (version simplifiée)
-        function initializeSpotify() {
-            const urlParams = new URLSearchParams(window.location.hash.substring(1));
-            const token = urlParams.get('access_token');
-            
-            if (token) {
-                spotifyToken = token;
-                localStorage.setItem('spotifyToken', token);
-                document.getElementById('spotify-login-section').style.display = 'none';
-                document.getElementById('spotify-player').style.display = 'block';
-                loadUserPlaylists();
-            } else if (spotifyToken) {
-                document.getElementById('spotify-login-section').style.display = 'none';
-                document.getElementById('spotify-player').style.display = 'block';
-                loadUserPlaylists();
-            }
-        }
-
-        document.getElementById('spotify-login').addEventListener('click', function() {
-            // Simulation de connexion Spotify
-            document.getElementById('spotify-login-section').style.display = 'none';
-            document.getElementById('spotify-player').style.display = 'block';
-            loadUserPlaylists();
-            
-            // Simulation de données Spotify
-            document.getElementById('spotify-title').textContent = "Workout Energy Mix";
-            document.getElementById('spotify-artist').textContent = "Various Artists";
-            document.getElementById('album-art').innerHTML = '<i class="fab fa-spotify"></i>';
-        });
-
-        function loadUserPlaylists() {
-            // Simulation de playlists
-            const playlists = [
-                { name: "Workout Energy 🏋️", id: "workout1" },
-                { name: "Running Motivation 🏃", id: "workout2" },
-                { name: "Yoga & Relax 🧘", id: "workout3" },
-                { name: "Power Training 💥", id: "workout4" }
-            ];
-            
-            const select = document.getElementById('spotify-playlists');
-            select.innerHTML = '<option value="">Sélectionne une playlist</option>';
-            playlists.forEach(playlist => {
-                const option = document.createElement('option');
-                option.value = playlist.id;
-                option.textContent = playlist.name;
-                select.appendChild(option);
-            });
-        }
-
-        // Mini-jeux
-        // Jeu de réaction
-        let reactionStartTime;
-        document.getElementById('reaction-btn').addEventListener('click', function() {
-            const reactionTime = Date.now() - reactionStartTime;
-            document.getElementById('reaction-score').textContent = `Temps: ${reactionTime}ms`;
-            
-            if (!gameScores.bestReaction || reactionTime < gameScores.bestReaction) {
-                gameScores.bestReaction = reactionTime;
-                localStorage.setItem('gameScores', JSON.stringify(gameScores));
-                document.getElementById('best-reaction').textContent = `${reactionTime}ms`;
-                createConfetti();
-            }
-            
-            this.disabled = true;
-            this.textContent = 'Attends...';
-            document.getElementById('reaction-display').textContent = 'Prêt ?';
-            
-            setTimeout(startReactionGame, 2000);
-        });
-
-        function startReactionGame() {
-            document.getElementById('reaction-display').textContent = 'Prépare-toi...';
-            const delay = Math.random() * 3000 + 2000;
-            
-            setTimeout(() => {
-                document.getElementById('reaction-display').textContent = 'CLIQUE MAINTENANT !';
-                document.getElementById('reaction-display').style.color = 'var(--success)';
-                document.getElementById('reaction-btn').disabled = false;
-                document.getElementById('reaction-btn').textContent = 'CLIQUE !';
-                document.getElementById('reaction-btn').classList.add('pulse');
-                reactionStartTime = Date.now();
-            }, delay);
-        }
-
-        // Jeu de pompes virtuelles
-        let pushupCount = 0;
-        let pushupTimer;
-        let pushupTimeLeft = 30;
-        
-        document.getElementById('start-pushup').addEventListener('click', function() {
-            pushupCount = 0;
-            pushupTimeLeft = 30;
-            document.getElementById('pushup-count').textContent = '0 pompes';
-            document.getElementById('pushup-timer').textContent = '30s';
-            document.getElementById('start-pushup').style.display = 'none';
-            document.getElementById('do-pushup').style.display = 'inline-block';
-            
-            pushupTimer = setInterval(() => {
-                pushupTimeLeft--;
-                document.getElementById('pushup-timer').textContent = `${pushupTimeLeft}s`;
-                
-                if (pushupTimeLeft <= 0) {
-                    clearInterval(pushupTimer);
-                    document.getElementById('do-pushup').style.display = 'none';
-                    document.getElementById('start-pushup').style.display = 'inline-block';
+        // Configuration des écouteurs d'événements
+        function setupEventListeners() {
+            // Navigation
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
                     
-                    if (!gameScores.pushupRecord || pushupCount > gameScores.pushupRecord) {
-                        gameScores.pushupRecord = pushupCount;
-                        localStorage.setItem('gameScores', JSON.stringify(gameScores));
-                        document.getElementById('pushup-record').textContent = `${pushupCount} pompes`;
-                        createConfetti();
-                    }
+                    // Mettre à jour l'état actif des boutons
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Navigation entre les semaines
+            prevWeekBtn.addEventListener('click', function() {
+                if (currentWeekNumber > 1) {
+                    currentWeekNumber--;
+                    displayWeekProgram();
+                    loadWeekNotes();
+                }
+            });
+            
+            nextWeekBtn.addEventListener('click', function() {
+                if (currentWeekNumber < Object.keys(trainingProgram).length) {
+                    currentWeekNumber++;
+                    displayWeekProgram();
+                    loadWeekNotes();
+                }
+            });
+            
+            // Timer
+            startTimerBtn.addEventListener('click', startTimer);
+            stopTimerBtn.addEventListener('click', stopTimer);
+            completeExerciseBtn.addEventListener('click', completeExerciseWithTimer);
+            closeTimerBtn.addEventListener('click', closeTimer);
+            
+            // Célébration
+            closeCelebrationBtn.addEventListener('click', closeCelebration);
+            
+            // Réinitialiser la progression
+            resetProgressBtn.addEventListener('click', function() {
+                if (confirm("Êtes-vous sûr de vouloir réinitialiser toute votre progression ? Cette action est irréversible.")) {
+                    localStorage.removeItem('completedExercises');
+                    localStorage.removeItem('workoutHistory');
+                    localStorage.removeItem('earnedBadges');
+                    localStorage.removeItem('weekNotes');
+                    localStorage.removeItem('progressPhotos');
+                    localStorage.removeItem('nutritionData');
+                    localStorage.removeItem('communityData');
+                    completedExercises = {};
+                    workoutHistoryData = [];
+                    earnedBadges = [];
+                    weekNotesData = {};
+                    progressPhotosData = [];
+                    nutritionData = {
+                        caloriesConsumed: 0,
+                        caloriesBurned: 0,
+                        proteinIntake: 0,
+                        waterIntake: 0,
+                        meals: []
+                    };
+                    communityData = {
+                        posts: [],
+                        ranking: []
+                    };
+                    loadProgress();
+                    displayTodayProgram();
+                    displayWeekProgram();
+                    displayStats();
+                    displayBadges();
+                    displayWorkoutHistory();
+                    displayNutritionData();
+                    displayCommunityPosts();
+                    displayCommunityRanking();
+                    alert("Progression réinitialisée avec succès !");
+                }
+            });
+            
+            // Paramètres utilisateur
+            weeklyGoal.addEventListener('change', function() {
+                userSettings.weeklyGoal = parseInt(this.value);
+                saveUserSettings();
+            });
+            
+            themeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    setTheme(theme);
+                    
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            remindersToggle.addEventListener('change', function() {
+                userSettings.reminders = this.checked;
+                saveUserSettings();
+                
+                if (this.checked) {
+                    setupReminders();
+                }
+            });
+            
+            // Photos de progression
+            photoUpload.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const photoData = {
+                            id: Date.now(),
+                            data: event.target.result,
+                            date: new Date().toISOString()
+                        };
+                        progressPhotosData.push(photoData);
+                        saveProgressPhotos();
+                        displayProgressPhotos();
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            // Export des données
+            exportDataBtn.addEventListener('click', exportData);
+            
+            // Notes de la semaine
+            saveNotesBtn.addEventListener('click', saveWeekNotes);
+            
+            // Musique
+            musicFile.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files.length > 0) {
+                    musicFiles = Array.from(e.target.files);
+                    currentMusicIndex = 0;
+                    loadMusic(currentMusicIndex);
+                }
+            });
+            
+            playMusicBtn.addEventListener('click', toggleMusic);
+            prevMusicBtn.addEventListener('click', prevMusic);
+            nextMusicBtn.addEventListener('click', nextMusic);
+            
+            audioPlayer.addEventListener('ended', nextMusic);
+            
+            // Spotify
+            connectSpotifyBtn.addEventListener('click', connectSpotify);
+            playTrackBtn.addEventListener('click', toggleSpotifyPlayback);
+            prevTrackBtn.addEventListener('click', prevSpotifyTrack);
+            nextTrackBtn.addEventListener('click', nextSpotifyTrack);
+            
+            // Nutrition
+            addNutritionBtn.addEventListener('click', addNutritionEntry);
+            addMealBtn.addEventListener('click', addMeal);
+            
+            // Communauté
+            publishPostBtn.addEventListener('click', publishPost);
+            
+            // Paramètres avancés
+            saveAdvancedSettingsBtn.addEventListener('click', saveAdvancedSettings);
+        }
+
+        // Afficher une page spécifique
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Mettre à jour les données si nécessaire
+            if (pageId === 'stats') {
+                displayStats();
+                displayBadges();
+                displayWorkoutHistory();
+            } else if (pageId === 'profile') {
+                displayProgressPhotos();
+            } else if (pageId === 'nutrition') {
+                displayNutritionData();
+            } else if (pageId === 'community') {
+                displayCommunityPosts();
+                displayCommunityRanking();
+            }
+        }
+
+        // Afficher la phrase motivante du jour
+        function showDailyMotivation() {
+            const today = new Date().getDate();
+            const phraseIndex = today % motivationalPhrases.length;
+            dailyMotivation.textContent = motivationalPhrases[phraseIndex];
+        }
+
+        // Afficher le programme du jour
+        function displayTodayProgram() {
+            const weekData = trainingProgram[currentWeekNumber];
+            
+            // Mettre à jour les durées
+            morningDuration.textContent = weekData.morning.duration;
+            eveningDuration.textContent = weekData.evening.duration;
+            
+            // Afficher les exercices du matin
+            morningExercises.innerHTML = '';
+            weekData.morning.exercises.forEach((exercise, index) => {
+                const exerciseId = `week${currentWeekNumber}-morning-${index}`;
+                const isCompleted = completedExercises[exerciseId] || false;
+                
+                const exerciseElement = createExerciseElement(exercise, exerciseId, isCompleted);
+                morningExercises.appendChild(exerciseElement);
+            });
+            
+            // Afficher les exercices du soir
+            eveningExercises.innerHTML = '';
+            weekData.evening.exercises.forEach((exercise, index) => {
+                const exerciseId = `week${currentWeekNumber}-evening-${index}`;
+                const isCompleted = completedExercises[exerciseId] || false;
+                
+                const exerciseElement = createExerciseElement(exercise, exerciseId, isCompleted);
+                eveningExercises.appendChild(exerciseElement);
+            });
+            
+            // Mettre à jour la barre de progression du jour
+            updateDailyProgress();
+        }
+
+        // Afficher le programme de la semaine
+        function displayWeekProgram() {
+            const weekData = trainingProgram[currentWeekNumber];
+            
+            // Mettre à jour le titre de la semaine
+            currentWeek.textContent = weekData.title;
+            
+            // Afficher les exercices de la semaine
+            weekExercises.innerHTML = '';
+            
+            // Section matin
+            const morningSection = document.createElement('div');
+            morningSection.className = 'session';
+            
+            const morningHeader = document.createElement('div');
+            morningHeader.className = 'session-header';
+            morningHeader.innerHTML = `
+                <div class="session-title">Matin</div>
+                <div class="session-duration">${weekData.morning.duration}</div>
+            `;
+            morningSection.appendChild(morningHeader);
+            
+            weekData.morning.exercises.forEach((exercise, index) => {
+                const exerciseId = `week${currentWeekNumber}-morning-${index}`;
+                const isCompleted = completedExercises[exerciseId] || false;
+                
+                const exerciseElement = createExerciseElement(exercise, exerciseId, isCompleted);
+                morningSection.appendChild(exerciseElement);
+            });
+            
+            weekExercises.appendChild(morningSection);
+            
+            // Section soir
+            const eveningSection = document.createElement('div');
+            eveningSection.className = 'session';
+            
+            const eveningHeader = document.createElement('div');
+            eveningHeader.className = 'session-header';
+            eveningHeader.innerHTML = `
+                <div class="session-title">Soir</div>
+                <div class="session-duration">${weekData.evening.duration}</div>
+            `;
+            eveningSection.appendChild(eveningHeader);
+            
+            weekData.evening.exercises.forEach((exercise, index) => {
+                const exerciseId = `week${currentWeekNumber}-evening-${index}`;
+                const isCompleted = completedExercises[exerciseId] || false;
+                
+                const exerciseElement = createExerciseElement(exercise, exerciseId, isCompleted);
+                eveningSection.appendChild(exerciseElement);
+            });
+            
+            weekExercises.appendChild(eveningSection);
+            
+            // Mettre à jour la barre de progression de la semaine
+            updateWeeklyProgress();
+            
+            // Mettre à jour l'état des boutons de navigation des semaines
+            prevWeekBtn.disabled = currentWeekNumber === 1;
+            nextWeekBtn.disabled = currentWeekNumber === Object.keys(trainingProgram).length;
+        }
+
+        // Créer un élément d'exercice
+        function createExerciseElement(exercise, exerciseId, isCompleted) {
+            const exerciseElement = document.createElement('div');
+            exerciseElement.className = `exercise ${isCompleted ? 'completed' : ''}`;
+            
+            exerciseElement.innerHTML = `
+                <div class="exercise-icon">
+                    <i class="fas ${exercise.icon}"></i>
+                </div>
+                <div class="exercise-details">
+                    <div class="exercise-name">${exercise.name}</div>
+                    <div class="exercise-reps">${exercise.reps}</div>
+                </div>
+                <div class="exercise-actions">
+                    <button class="timer-btn" data-exercise-id="${exerciseId}" data-exercise-name="${exercise.name}" data-duration="${exercise.duration}">
+                        <i class="fas fa-stopwatch"></i>
+                    </button>
+                    <div class="checkbox ${isCompleted ? 'checked' : ''}" data-exercise-id="${exerciseId}">
+                        ${isCompleted ? '<i class="fas fa-check"></i>' : ''}
+                    </div>
+                </div>
+            `;
+            
+            // Ajouter un écouteur d'événement pour la case à cocher
+            const checkbox = exerciseElement.querySelector('.checkbox');
+            checkbox.addEventListener('click', function() {
+                const id = this.getAttribute('data-exercise-id');
+                toggleExerciseCompletion(id);
+            });
+            
+            // Ajouter un écouteur d'événement pour le timer
+            const timerBtn = exerciseElement.querySelector('.timer-btn');
+            timerBtn.addEventListener('click', function() {
+                const id = this.getAttribute('data-exercise-id');
+                const name = this.getAttribute('data-exercise-name');
+                const duration = parseInt(this.getAttribute('data-duration'));
+                openTimer(id, name, duration);
+            });
+            
+            return exerciseElement;
+        }
+
+        // Ouvrir le timer pour un exercice
+        function openTimer(exerciseId, exerciseName, duration) {
+            currentExerciseId = exerciseId;
+            timerSeconds = duration;
+            timerExerciseName.textContent = exerciseName;
+            updateTimerDisplay();
+            
+            timerModal.classList.add('active');
+            startTimerBtn.style.display = 'block';
+            stopTimerBtn.style.display = 'none';
+        }
+
+        // Fermer le timer
+        function closeTimer() {
+            timerModal.classList.remove('active');
+            stopTimer();
+        }
+
+        // Démarrer le timer
+        function startTimer() {
+            startTimerBtn.style.display = 'none';
+            stopTimerBtn.style.display = 'block';
+            
+            timerInterval = setInterval(function() {
+                timerSeconds--;
+                updateTimerDisplay();
+                
+                if (timerSeconds <= 0) {
+                    stopTimer();
+                    timerSound.play();
+                    completeExerciseWithTimer();
                 }
             }, 1000);
-        });
+        }
 
-        document.getElementById('do-pushup').addEventListener('click', function() {
-            pushupCount++;
-            document.getElementById('pushup-count').textContent = `${pushupCount} pompes`;
-            this.classList.add('pulse');
-            setTimeout(() => this.classList.remove('pulse'), 200);
-        });
-
-        // Fonction pour créer des confettis
-        function createConfetti() {
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.backgroundColor = getRandomColor();
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 5000);
-                }, i * 100);
+        // Arrêter le timer
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
             }
         }
 
-        function getRandomColor() {
-            const colors = ['#4a6fa5', '#6bbaa7', '#ff6b6b', '#ffb347', '#6b8cbc'];
-            return colors[Math.floor(Math.random() * colors.length)];
+        // Mettre à jour l'affichage du timer
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
-        // Réalisations
-        function loadAchievements() {
-            const achievements = [
-                { icon: "fa-dumbbell", title: "Première séance", description: "Complète ta première séance d'entraînement" },
-                { icon: "fa-fire", title: "Série de 7 jours", description: "7 jours d'entraînement consécutifs" },
-                { icon: "fa-trophy", title: "Champion", description: "Termine 4 semaines complètes" },
-                { icon: "fa-star", title: "Perfectionniste", description: "100% des exercices d'une semaine" },
-                { icon: "fa-bolt", title: "Énergétique", description: "5 séances du matin complétées" },
-                { icon: "fa-moon", title: "Nocturne", description: "5 séances du soir complétées" }
-            ];
+        // Terminer l'exercice avec le timer
+        function completeExerciseWithTimer() {
+            if (currentExerciseId) {
+                toggleExerciseCompletion(currentExerciseId);
+                closeTimer();
+            }
+        }
+
+        // Basculer l'état de complétion d'un exercice
+        function toggleExerciseCompletion(exerciseId) {
+            completedExercises[exerciseId] = !completedExercises[exerciseId];
+            localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
             
-            const container = document.getElementById('achievements-list');
-            achievements.forEach(achievement => {
-                const item = document.createElement('div');
-                item.className = 'achievement-item';
-                item.innerHTML = `
-                    <div class="achievement-icon">
-                        <i class="fas ${achievement.icon}"></i>
-                    </div>
-                    <div>
-                        <div style="font-weight: 500;">${achievement.title}</div>
-                        <div style="font-size: 0.8rem; color: var(--text-light);">${achievement.description}</div>
+            // Jouer le son de feedback
+            if (completedExercises[exerciseId]) {
+                completeSound.play();
+                
+                // Ajouter à l'historique
+                const now = new Date();
+                const historyEntry = {
+                    date: now.toISOString(),
+                    exerciseId: exerciseId,
+                    type: exerciseId.includes('morning') ? 'Matin' : 'Soir'
+                };
+                workoutHistoryData.unshift(historyEntry);
+                localStorage.setItem('workoutHistory', JSON.stringify(workoutHistoryData));
+                
+                // Ajouter des points
+                userSettings.points += 10;
+                saveUserSettings();
+                updateUserLevel();
+                
+                // Vérifier les badges
+                checkBadges();
+                
+                // Vérifier si la semaine est terminée
+                checkWeekCompletion();
+            }
+            
+            // Mettre à jour l'affichage
+            loadProgress();
+            displayTodayProgram();
+            displayWeekProgram();
+        }
+
+        // Charger la progression
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('completedExercises');
+            if (savedProgress) {
+                completedExercises = JSON.parse(savedProgress);
+            }
+        }
+
+        // Charger les paramètres utilisateur
+        function loadUserSettings() {
+            const savedSettings = localStorage.getItem('userSettings');
+            if (savedSettings) {
+                userSettings = JSON.parse(savedSettings);
+                
+                // Appliquer les paramètres
+                profileName.textContent = userSettings.name;
+                weeklyGoal.value = userSettings.weeklyGoal;
+                setTheme(userSettings.theme);
+                remindersToggle.checked = userSettings.reminders;
+                profilePoints.textContent = `${userSettings.points} points`;
+                usernameInput.value = userSettings.username;
+                weightGoal.value = userSettings.weightGoal;
+                workoutDurationGoal.value = userSettings.workoutDurationGoal;
+                
+                // Mettre à jour les boutons de thème
+                themeButtons.forEach(btn => {
+                    if (btn.getAttribute('data-theme') === userSettings.theme) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // Sauvegarder les paramètres utilisateur
+        function saveUserSettings() {
+            localStorage.setItem('userSettings', JSON.stringify(userSettings));
+        }
+
+        // Charger les notes de la semaine
+        function loadWeekNotes() {
+            const weekKey = `week${currentWeekNumber}`;
+            if (weekNotesData[weekKey]) {
+                weekNotes.value = weekNotesData[weekKey];
+            } else {
+                weekNotes.value = '';
+            }
+        }
+
+        // Sauvegarder les notes de la semaine
+        function saveWeekNotes() {
+            const weekKey = `week${currentWeekNumber}`;
+            weekNotesData[weekKey] = weekNotes.value;
+            localStorage.setItem('weekNotes', JSON.stringify(weekNotesData));
+            alert("Notes sauvegardées !");
+        }
+
+        // Charger les photos de progression
+        function loadProgressPhotos() {
+            const savedPhotos = localStorage.getItem('progressPhotos');
+            if (savedPhotos) {
+                progressPhotosData = JSON.parse(savedPhotos);
+            }
+        }
+
+        // Sauvegarder les photos de progression
+        function saveProgressPhotos() {
+            localStorage.setItem('progressPhotos', JSON.stringify(progressPhotosData));
+        }
+
+        // Afficher les photos de progression
+        function displayProgressPhotos() {
+            progressPhotos.innerHTML = '';
+            
+            if (progressPhotosData.length === 0) {
+                progressPhotos.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucune photo de progression</p>';
+                return;
+            }
+            
+            progressPhotosData.forEach(photo => {
+                const photoElement = document.createElement('div');
+                photoElement.style.marginBottom = '15px';
+                photoElement.innerHTML = `
+                    <img src="${photo.data}" style="width: 100%; border-radius: 8px; margin-bottom: 5px;">
+                    <div style="font-size: 0.8rem; color: var(--text-light); text-align: center;">
+                        ${new Date(photo.date).toLocaleDateString('fr-FR')}
                     </div>
                 `;
-                container.appendChild(item);
+                progressPhotos.appendChild(photoElement);
             });
         }
 
-        // Statistiques sociales
-        function updateSocialStats() {
-            const totalWorkouts = workoutHistoryData.length;
-            document.getElementById('total-followers').textContent = Math.floor(totalWorkouts * 2.5);
-            document.getElementById('total-following').textContent = Math.floor(totalWorkouts * 1.2);
-            document.getElementById('total-posts').textContent = totalWorkouts;
+        // Charger les données nutritionnelles
+        function loadNutritionData() {
+            const savedNutrition = localStorage.getItem('nutritionData');
+            if (savedNutrition) {
+                nutritionData = JSON.parse(savedNutrition);
+            }
         }
 
-        // Initialiser les scores des jeux
-        if (!gameScores.bestReaction) gameScores.bestReaction = 0;
-        if (!gameScores.pushupRecord) gameScores.pushupRecord = 0;
-        document.getElementById('best-reaction').textContent = `${gameScores.bestReaction}ms`;
-        document.getElementById('pushup-record').textContent = `${gameScores.pushupRecord} pompes`;
+        // Sauvegarder les données nutritionnelles
+        function saveNutritionData() {
+            localStorage.setItem('nutritionData', JSON.stringify(nutritionData));
+        }
 
-        // Démarrer le jeu de réaction au chargement
-        setTimeout(startReactionGame, 1000);
-
-        // ... Le reste des fonctions du code précédent reste identique
-        // (navigation, timer, progression, thèmes, etc.)
-
-        // Bouton d'accès rapide
-        document.getElementById('quick-access').addEventListener('click', function() {
-            const randomPage = ['home', 'week', 'games', 'music', 'profile'][Math.floor(Math.random() * 5)];
-            showPage(randomPage);
+        // Afficher les données nutritionnelles
+        function displayNutritionData() {
+            // Mettre à jour les valeurs
+            caloriesConsumed.textContent = nutritionData.caloriesConsumed;
+            caloriesBurned.textContent = nutritionData.caloriesBurned;
+            proteinIntake.textContent = `${nutritionData.proteinIntake}g`;
+            waterIntake.textContent = `${nutritionData.waterIntake}L`;
             
-            // Mettre à jour la navigation
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[data-page="${randomPage}"]`).classList.add('active');
-        });
+            // Afficher les repas
+            mealsList.innerHTML = '';
+            
+            if (nutritionData.meals.length === 0) {
+                mealsList.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucun repas enregistré aujourd\'hui</p>';
+            } else {
+                nutritionData.meals.forEach(meal => {
+                    const mealElement = document.createElement('div');
+                    mealElement.className = 'progress-item';
+                    mealElement.innerHTML = `
+                        <div>
+                            <div class="progress-date">${meal.name}</div>
+                            <div class="history-session">${meal.calories} calories</div>
+                        </div>
+                        <div class="progress-value">${meal.time}</div>
+                    `;
+                    mealsList.appendChild(mealElement);
+                });
+            }
+            
+            // Afficher les conseils nutritionnels
+            displayNutritionTips();
+        }
 
-        // Pour gagner de la place, je n'ai pas réécrit toutes les fonctions
-        // mais elles fonctionnent de la même manière en s'adaptant aux jours
+        // Afficher les conseils nutritionnels
+        function displayNutritionTips() {
+            const tips = [
+                "Buvez au moins 2L d'eau par jour pour une bonne hydratation.",
+                "Consommez des protéines à chaque repas pour favoriser la récupération musculaire.",
+                "Privilégiez les glucides complexes (riz complet, patates douces) pour une énergie durable.",
+                "Les légumes verts sont riches en nutriments essentiels, consommez-en à volonté.",
+                "Évitez les aliments transformés et privilégiez les aliments naturels."
+            ];
+            
+            nutritionTips.innerHTML = '';
+            
+            tips.forEach(tip => {
+                const tipElement = document.createElement('div');
+                tipElement.className = 'progress-item';
+                tipElement.innerHTML = `
+                    <div>
+                        <i class="fas fa-lightbulb" style="color: var(--warning); margin-right: 10px;"></i>
+                        <span>${tip}</span>
+                    </div>
+                `;
+                nutritionTips.appendChild(tipElement);
+            });
+        }
+
+        // Ajouter une entrée nutritionnelle
+        function addNutritionEntry() {
+            const calories = prompt("Nombre de calories consommées :");
+            if (calories && !isNaN(calories)) {
+                nutritionData.caloriesConsumed += parseInt(calories);
+                saveNutritionData();
+                displayNutritionData();
+            }
+            
+            const protein = prompt("Quantité de protéines consommées (en g) :");
+            if (protein && !isNaN(protein)) {
+                nutritionData.proteinIntake += parseInt(protein);
+                saveNutritionData();
+                displayNutritionData();
+            }
+            
+            const water = prompt("Quantité d'eau bue (en L) :");
+            if (water && !isNaN(water)) {
+                nutritionData.waterIntake += parseFloat(water);
+                saveNutritionData();
+                displayNutritionData();
+            }
+        }
+
+        // Ajouter un repas
+        function addMeal() {
+            const name = prompt("Nom du repas :");
+            if (!name) return;
+            
+            const calories = prompt("Nombre de calories :");
+            if (!calories || isNaN(calories)) return;
+            
+            const time = prompt("Heure du repas (ex: 12:30) :");
+            if (!time) return;
+            
+            const meal = {
+                name: name,
+                calories: parseInt(calories),
+                time: time
+            };
+            
+            nutritionData.meals.push(meal);
+            nutritionData.caloriesConsumed += parseInt(calories);
+            saveNutritionData();
+            displayNutritionData();
+        }
+
+        // Charger les données de la communauté
+        function loadCommunityData() {
+            const savedCommunity = localStorage.getItem('communityData');
+            if (savedCommunity) {
+                communityData = JSON.parse(savedCommunity);
+            }
+        }
+
+        // Sauvegarder les données de la communauté
+        function saveCommunityData() {
+            localStorage.setItem('communityData', JSON.stringify(communityData));
+        }
+
+        // Afficher les posts de la communauté
+        function displayCommunityPosts() {
+            communityPosts.innerHTML = '';
+            
+            if (communityData.posts.length === 0) {
+                communityPosts.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucun post dans la communauté</p>';
+                return;
+            }
+            
+            communityData.posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'community-post';
+                postElement.innerHTML = `
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="post-user">${post.user}</div>
+                            <div class="post-time">${post.time}</div>
+                        </div>
+                    </div>
+                    <div class="post-content">${post.content}</div>
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <i class="fas fa-heart"></i>
+                            <span>${post.likes}</span>
+                        </div>
+                        <div class="post-action">
+                            <i class="fas fa-comment"></i>
+                            <span>${post.comments}</span>
+                        </div>
+                    </div>
+                `;
+                communityPosts.appendChild(postElement);
+            });
+        }
+
+        // Afficher le classement de la communauté
+        function displayCommunityRanking() {
+            communityRanking.innerHTML = '';
+            
+            // Générer un classement fictif
+            const ranking = [
+                { name: "Marie", points: 1250 },
+                { name: "Pierre", points: 980 },
+                { name: "Sophie", points: 870 },
+                { name: "Jean", points: 750 },
+                { name: "Alice", points: 620 }
+            ];
+            
+            ranking.forEach((user, index) => {
+                const rankElement = document.createElement('div');
+                rankElement.className = 'progress-item';
+                rankElement.innerHTML = `
+                    <div>
+                        <span style="font-weight: bold; margin-right: 10px;">${index + 1}.</span>
+                        <span>${user.name}</span>
+                    </div>
+                    <div class="progress-value">${user.points} pts</div>
+                `;
+                communityRanking.appendChild(rankElement);
+            });
+        }
+
+        // Publier un post
+        function publishPost() {
+            const content = newPost.value.trim();
+            if (!content) {
+                alert("Veuillez écrire un message avant de publier.");
+                return;
+            }
+            
+            const now = new Date();
+            const post = {
+                user: userSettings.username || "Anonyme",
+                content: content,
+                time: now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}),
+                likes: 0,
+                comments: 0
+            };
+            
+            communityData.posts.unshift(post);
+            saveCommunityData();
+            displayCommunityPosts();
+            
+            newPost.value = '';
+            alert("Post publié avec succès !");
+        }
+
+        // Mettre à jour la progression du jour
+        function updateDailyProgress() {
+            const weekData = trainingProgram[currentWeekNumber];
+            const totalExercises = weekData.morning.exercises.length + weekData.evening.exercises.length;
+            let completedCount = 0;
+            
+            // Compter les exercices complétés pour aujourd'hui
+            for (let i = 0; i < weekData.morning.exercises.length; i++) {
+                const exerciseId = `week${currentWeekNumber}-morning-${i}`;
+                if (completedExercises[exerciseId]) {
+                    completedCount++;
+                }
+            }
+            
+            for (let i = 0; i < weekData.evening.exercises.length; i++) {
+                const exerciseId = `week${currentWeekNumber}-evening-${i}`;
+                if (completedExercises[exerciseId]) {
+                    completedCount++;
+                }
+            }
+            
+            // Mettre à jour la barre de progression
+            const progressPercentage = totalExercises > 0 ? (completedCount / totalExercises) * 100 : 0;
+            dailyProgress.style.width = `${progressPercentage}%`;
+        }
+
+        // Mettre à jour la progression de la semaine
+        function updateWeeklyProgress() {
+            const totalExercises = Object.keys(completedExercises).length;
+            const allPossibleExercises = calculateTotalExercises();
+            const progressPercentage = allPossibleExercises > 0 ? (totalExercises / allPossibleExercises) * 100 : 0;
+            weeklyProgress.style.width = `${progressPercentage}%`;
+        }
+
+        // Calculer le nombre total d'exercices possibles
+        function calculateTotalExercises() {
+            let total = 0;
+            for (const week in trainingProgram) {
+                total += trainingProgram[week].morning.exercises.length;
+                total += trainingProgram[week].evening.exercises.length;
+            }
+            return total;
+        }
+
+        // Afficher les statistiques
+        function displayStats() {
+            // Calculer les statistiques
+            const totalWorkouts = workoutHistoryData.length;
+            const totalExercises = Object.keys(completedExercises).length;
+            const currentStreak = calculateCurrentStreak();
+            const completionRate = Math.round((totalExercises / calculateTotalExercises()) * 100);
+            
+            // Mettre à jour les éléments
+            totalWorkoutsEl.textContent = totalWorkouts;
+            totalExercisesEl.textContent = totalExercises;
+            currentStreakEl.textContent = currentStreak;
+            completionRateEl.textContent = `${completionRate}%`;
+            
+            // Mettre à jour le graphique
+            updateProgressChart();
+        }
+
+        // Calculer la série actuelle
+        function calculateCurrentStreak() {
+            if (workoutHistoryData.length === 0) return 0;
+            
+            let streak = 0;
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Vérifier les 30 derniers jours
+            for (let i = 0; i < 30; i++) {
+                const checkDate = new Date(today);
+                checkDate.setDate(today.getDate() - i);
+                const dateStr = checkDate.toISOString().split('T')[0];
+                
+                const hasWorkout = workoutHistoryData.some(entry => {
+                    const entryDate = new Date(entry.date).toISOString().split('T')[0];
+                    return entryDate === dateStr;
+                });
+                
+                if (hasWorkout) {
+                    streak++;
+                } else if (i === 0) {
+                    // Aujourd'hui n'a pas d'entraînement, pas de série
+                    return 0;
+                } else {
+                    break;
+                }
+            }
+            
+            return streak;
+        }
+
+        // Mettre à jour le graphique de progression
+        function updateProgressChart() {
+            const ctx = progressChart.getContext('2d');
+            
+            // Préparer les données des 4 dernières semaines
+            const labels = [];
+            const data = [];
+            
+            for (let week = 1; week <= 4; week++) {
+                labels.push(`Semaine ${week}`);
+                
+                let completed = 0;
+                let total = 0;
+                
+                if (trainingProgram[week]) {
+                    total = trainingProgram[week].morning.exercises.length + trainingProgram[week].evening.exercises.length;
+                    
+                    for (let i = 0; i < trainingProgram[week].morning.exercises.length; i++) {
+                        const exerciseId = `week${week}-morning-${i}`;
+                        if (completedExercises[exerciseId]) completed++;
+                    }
+                    
+                    for (let i = 0; i < trainingProgram[week].evening.exercises.length; i++) {
+                        const exerciseId = `week${week}-evening-${i}`;
+                        if (completedExercises[exerciseId]) completed++;
+                    }
+                }
+                
+                const percentage = total > 0 ? (completed / total) * 100 : 0;
+                data.push(percentage);
+            }
+            
+            // Créer le graphique
+            if (window.progressChartInstance) {
+                window.progressChartInstance.destroy();
+            }
+            
+            window.progressChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Progression (%)',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(74, 111, 165, 0.7)',
+                            'rgba(107, 186, 167, 0.7)',
+                            'rgba(255, 179, 71, 0.7)',
+                            'rgba(255, 107, 107, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgb(74, 111, 165)',
+                            'rgb(107, 186, 167)',
+                            'rgb(255, 179, 71)',
+                            'rgb(255, 107, 107)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Afficher les badges
+        function displayBadges() {
+            badgesContainer.innerHTML = '';
+            
+            badges.forEach(badge => {
+                const isEarned = earnedBadges.includes(badge.id);
+                
+                const badgeElement = document.createElement('div');
+                badgeElement.className = 'badge-item';
+                badgeElement.innerHTML = `
+                    <div class="badge-icon ${isEarned ? 'earned' : ''}">
+                        <i class="fas ${badge.icon}"></i>
+                    </div>
+                    <div class="badge-name">${badge.name}</div>
+                `;
+                
+                badgesContainer.appendChild(badgeElement);
+            });
+        }
+
+        // Afficher l'historique des séances
+        function displayWorkoutHistory() {
+            workoutHistory.innerHTML = '';
+            
+            if (workoutHistoryData.length === 0) {
+                workoutHistory.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucune séance enregistrée</p>';
+                return;
+            }
+            
+            // Afficher les 10 dernières séances
+            const recentWorkouts = workoutHistoryData.slice(0, 10);
+            
+            recentWorkouts.forEach(workout => {
+                const workoutDate = new Date(workout.date);
+                const workoutElement = document.createElement('div');
+                workoutElement.className = 'history-item';
+                workoutElement.innerHTML = `
+                    <div>
+                        <div class="history-date">${workoutDate.toLocaleDateString('fr-FR')}</div>
+                        <div class="history-session">${workout.type} - ${workoutDate.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-check" style="color: var(--success);"></i>
+                    </div>
+                `;
+                workoutHistory.appendChild(workoutElement);
+            });
+        }
+
+        // Vérifier les badges
+        function checkBadges() {
+            const newBadges = [];
+            
+            // Badge première séance
+            if (workoutHistoryData.length >= 1 && !earnedBadges.includes('first_workout')) {
+                newBadges.push('first_workout');
+            }
+            
+            // Badge semaine terminée
+            for (let week = 1; week <= 4; week++) {
+                if (isWeekComplete(week) && !earnedBadges.includes(`week${week}_complete`)) {
+                    newBadges.push('week_complete');
+                    break;
+                }
+            }
+            
+            // Badge mois d'entraînement
+            if (Object.keys(completedExercises).length >= 50 && !earnedBadges.includes('month_complete')) {
+                newBadges.push('month_complete');
+            }
+            
+            // Badge série de 7 jours
+            if (calculateCurrentStreak() >= 7 && !earnedBadges.includes('streak_7')) {
+                newBadges.push('streak_7');
+            }
+            
+            // Badge série de 30 jours
+            if (calculateCurrentStreak() >= 30 && !earnedBadges.includes('streak_30')) {
+                newBadges.push('streak_30');
+            }
+            
+            // Ajouter les nouveaux badges
+            newBadges.forEach(badgeId => {
+                if (!earnedBadges.includes(badgeId)) {
+                    earnedBadges.push(badgeId);
+                }
+            });
+            
+            // Sauvegarder les badges
+            localStorage.setItem('earnedBadges', JSON.stringify(earnedBadges));
+            
+            // Afficher une notification pour les nouveaux badges
+            if (newBadges.length > 0) {
+                displayBadges();
+                alert(`Félicitations ! Vous avez débloqué ${newBadges.length} nouveau(x) badge(s) !`);
+            }
+        }
+
+        // Vérifier si une semaine est terminée
+        function checkWeekCompletion() {
+            if (isWeekComplete(currentWeekNumber) && !completedExercises[`week${currentWeekNumber}_completed`]) {
+                completedExercises[`week${currentWeekNumber}_completed`] = true;
+                localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
+                
+                // Ajouter des points
+                userSettings.points += 100;
+                saveUserSettings();
+                updateUserLevel();
+                
+                // Afficher l'écran de félicitations
+                celebrationMessage.textContent = `Vous avez terminé la semaine ${currentWeekNumber} !`;
+                celebration.classList.add('active');
+            }
+        }
+
+        // Vérifier si une semaine est complète
+        function isWeekComplete(week) {
+            const weekData = trainingProgram[week];
+            if (!weekData) return false;
+            
+            const totalExercises = weekData.morning.exercises.length + weekData.evening.exercises.length;
+            let completedCount = 0;
+            
+            for (let i = 0; i < weekData.morning.exercises.length; i++) {
+                const exerciseId = `week${week}-morning-${i}`;
+                if (completedExercises[exerciseId]) completedCount++;
+            }
+            
+            for (let i = 0; i < weekData.evening.exercises.length; i++) {
+                const exerciseId = `week${week}-evening-${i}`;
+                if (completedExercises[exerciseId]) completedCount++;
+            }
+            
+            return completedCount === totalExercises;
+        }
+
+        // Fermer l'écran de félicitations
+        function closeCelebration() {
+            celebration.classList.remove('active');
+        }
+
+        // Définir le thème
+        function setTheme(theme) {
+            document.body.className = '';
+            if (theme !== 'light') {
+                document.body.classList.add(`theme-${theme}`);
+            }
+            
+            userSettings.theme = theme;
+            saveUserSettings();
+        }
+
+        // Configurer les rappels
+        function setupReminders() {
+            if (!("Notification" in window)) {
+                alert("Votre navigateur ne supporte pas les notifications");
+                return;
+            }
+            
+            if (Notification.permission === "default") {
+                Notification.requestPermission();
+            }
+            
+            // Planifier les rappels (simplifié)
+            alert("Rappels activés ! Vous recevrez des notifications pour vos séances du matin et du soir.");
+        }
+
+        // Exporter les données
+        function exportData() {
+            const data = {
+                completedExercises: completedExercises,
+                workoutHistory: workoutHistoryData,
+                earnedBadges: earnedBadges,
+                userSettings: userSettings,
+                weekNotes: weekNotesData,
+                progressPhotos: progressPhotosData.length,
+                nutritionData: nutritionData,
+                communityData: communityData,
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const url = URL.createObjectURL(dataBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `fitprogress-data-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert("Données exportées avec succès !");
+        }
+
+        // Charger la musique
+        function loadMusic(index) {
+            if (musicFiles.length === 0) return;
+            
+            const file = musicFiles[index];
+            const url = URL.createObjectURL(file);
+            audioPlayer.src = url;
+            musicTitle.textContent = file.name;
+            musicArtist.textContent = "Fichier local";
+        }
+
+        // Basculer la lecture de la musique
+        function toggleMusic() {
+            if (musicFiles.length === 0) {
+                alert("Veuillez d'abord importer de la musique");
+                return;
+            }
+            
+            if (isPlaying) {
+                audioPlayer.pause();
+                playMusicBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audioPlayer.play();
+                playMusicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            
+            isPlaying = !isPlaying;
+        }
+
+        // Musique précédente
+        function prevMusic() {
+            if (musicFiles.length === 0) return;
+            
+            currentMusicIndex = (currentMusicIndex - 1 + musicFiles.length) % musicFiles.length;
+            loadMusic(currentMusicIndex);
+            
+            if (isPlaying) {
+                audioPlayer.play();
+            }
+        }
+
+        // Musique suivante
+        function nextMusic() {
+            if (musicFiles.length === 0) return;
+            
+            currentMusicIndex = (currentMusicIndex + 1) % musicFiles.length;
+            loadMusic(currentMusicIndex);
+            
+            if (isPlaying) {
+                audioPlayer.play();
+            }
+        }
+
+        // Connexion à Spotify (simulée)
+        function connectSpotify() {
+            // Dans une vraie application, vous utiliseriez l'API Spotify
+            // Ici, nous simulons la connexion
+            spotifyConnected = true;
+            spotifyLogin.style.display = 'none';
+            spotifyPlayer.style.display = 'flex';
+            
+            // Simuler le chargement d'une piste
+            trackCover.src = "https://via.placeholder.com/60";
+            trackName.textContent = "Workout Motivation Mix";
+            trackArtist.textContent = "Various Artists";
+            
+            alert("Connecté à Spotify avec succès !");
+        }
+
+        // Basculer la lecture Spotify
+        function toggleSpotifyPlayback() {
+            if (!spotifyConnected) {
+                alert("Veuillez d'abord vous connecter à Spotify");
+                return;
+            }
+            
+            // Simulation de lecture
+            const icon = playTrackBtn.querySelector('i');
+            if (icon.classList.contains('fa-play')) {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                alert("Lecture de la musique Spotify...");
+            } else {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                alert("Musique Spotify en pause");
+            }
+        }
+
+        // Piste Spotify précédente
+        function prevSpotifyTrack() {
+            if (!spotifyConnected) {
+                alert("Veuillez d'abord vous connecter à Spotify");
+                return;
+            }
+            
+            alert("Piste précédente");
+        }
+
+        // Piste Spotify suivante
+        function nextSpotifyTrack() {
+            if (!spotifyConnected) {
+                alert("Veuillez d'abord vous connecter à Spotify");
+                return;
+            }
+            
+            alert("Piste suivante");
+        }
+
+        // Sauvegarder les paramètres avancés
+        function saveAdvancedSettings() {
+            userSettings.username = usernameInput.value;
+            userSettings.weightGoal = parseInt(weightGoal.value) || 0;
+            userSettings.workoutDurationGoal = parseInt(workoutDurationGoal.value) || 30;
+            
+            saveUserSettings();
+            alert("Paramètres avancés sauvegardés !");
+        }
+
+        // Mettre à jour le niveau de l'utilisateur
+        function updateUserLevel() {
+            const totalExercises = Object.keys(completedExercises).length;
+            let level = 1;
+            let levelName = "Débutant";
+            
+            if (totalExercises >= 100) {
+                level = 4;
+                levelName = "Expert";
+            } else if (totalExercises >= 50) {
+                level = 3;
+                levelName = "Intermédiaire";
+            } else if (totalExercises >= 20) {
+                level = 2;
+                levelName = "Confirmé";
+            }
+            
+            profileLevel.textContent = `Niveau ${level} - ${levelName}`;
+            profilePoints.textContent = `${userSettings.points} points`;
+        }
     </script>
 </body>
 </html>
