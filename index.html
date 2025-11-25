@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitProgress - Programme d'entraînement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -34,32 +36,6 @@
             --border: #444444;
             --success: #7bc9b5;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .theme-blue {
-            --primary: #3a7bd5;
-            --primary-light: #5a9bff;
-            --secondary: #00d2ff;
-            --background: #f0f8ff;
-            --card-bg: #ffffff;
-            --text: #1a3c6e;
-            --text-light: #4a6fa5;
-            --border: #c2e0ff;
-            --success: #00d2ff;
-            --shadow: 0 4px 12px rgba(58, 123, 213, 0.15);
-        }
-
-        .theme-green {
-            --primary: #2e8b57;
-            --primary-light: #3cb371;
-            --secondary: #9acd32;
-            --background: #f0fff0;
-            --card-bg: #ffffff;
-            --text: #1e5631;
-            --text-light: #4a7c59;
-            --border: #c8e6c9;
-            --success: #2e8b57;
-            --shadow: 0 4px 12px rgba(46, 139, 87, 0.15);
         }
 
         * {
@@ -107,8 +83,6 @@
         nav {
             display: flex;
             gap: 15px;
-            overflow-x: auto;
-            padding: 5px 0;
         }
 
         .nav-btn {
@@ -121,7 +95,6 @@
             transition: all 0.3s ease;
             font-size: 0.9rem;
             position: relative;
-            white-space: nowrap;
         }
 
         .nav-btn.active {
@@ -630,14 +603,6 @@
             background: linear-gradient(135deg, #2d2d2d 50%, #6b8cbc 50%);
         }
 
-        .theme-blue {
-            background: linear-gradient(135deg, #f0f8ff 50%, #3a7bd5 50%);
-        }
-
-        .theme-green {
-            background: linear-gradient(135deg, #f0fff0 50%, #2e8b57 50%);
-        }
-
         .celebration {
             position: fixed;
             top: 0;
@@ -702,337 +667,6 @@
             font-size: 0.9rem;
         }
 
-        .spotify-player {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .spotify-login {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            padding: 20px;
-            background-color: rgba(30, 215, 96, 0.1);
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .spotify-btn {
-            background-color: #1DB954;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .spotify-btn:hover {
-            background-color: #1ed760;
-        }
-
-        .spotify-track {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .track-cover {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .track-info {
-            flex: 1;
-        }
-
-        .track-name {
-            font-weight: 500;
-        }
-
-        .track-artist {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .nutrition-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .nutrition-card {
-            background-color: rgba(107, 186, 167, 0.1);
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .nutrition-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--secondary);
-        }
-
-        .nutrition-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .community-post {
-            padding: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .community-post:last-child {
-            border-bottom: none;
-        }
-
-        .post-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .post-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .post-user {
-            font-weight: 500;
-        }
-
-        .post-time {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        .post-content {
-            margin-bottom: 10px;
-        }
-
-        .post-actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .post-action {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .post-action i {
-            font-size: 1rem;
-        }
-
-        .advanced-settings {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .setting-group {
-            margin-bottom: 15px;
-        }
-
-        .setting-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .setting-input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            background-color: var(--card-bg);
-            color: var(--text);
-        }
-
-        .progress-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .progress-item:last-child {
-            border-bottom: none;
-        }
-
-        .progress-date {
-            font-weight: 500;
-        }
-
-        .progress-value {
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        /* Mini-jeux */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .game-card {
-            background-color: rgba(74, 111, 165, 0.1);
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .game-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .game-name {
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .game-desc {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        /* Traducteur */
-        .translator-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .language-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .lang-btn {
-            padding: 8px 15px;
-            border: 1px solid var(--border);
-            background-color: var(--card-bg);
-            color: var(--text);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .translation-area {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .translation-input, .translation-output {
-            width: 100%;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background-color: var(--card-bg);
-            color: var(--text);
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .translation-output {
-            background-color: rgba(107, 186, 167, 0.1);
-        }
-
-        /* Jeu de mémoire */
-        .memory-game {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .memory-card {
-            aspect-ratio: 1;
-            background-color: var(--primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
-
-        .memory-card.flipped {
-            background-color: var(--secondary);
-            transform: rotateY(180deg);
-        }
-
-        .memory-card.matched {
-            background-color: var(--success);
-            cursor: default;
-        }
-
-        .game-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        /* Restauration de sauvegarde */
-        .restore-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .backup-info {
-            background-color: rgba(255, 179, 71, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -1045,26 +679,22 @@
             
             nav {
                 width: 100%;
-                justify-content: flex-start;
+                justify-content: space-between;
             }
             
             .nav-btn {
-                flex: none;
+                flex: 1;
                 text-align: center;
                 font-size: 0.8rem;
-                padding: 8px 10px;
+                padding: 8px 5px;
             }
             
-            .stats-grid, .nutrition-grid, .games-grid {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
             
             .timer-display {
                 font-size: 2.5rem;
-            }
-            
-            .memory-game {
-                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -1078,52 +708,6 @@
                 font-size: 2.5rem;
                 margin: 10px 0;
             }
-        }
-
-        /* Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--border);
-            transition: .4s;
-            border-radius: 24px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: var(--primary);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
         }
     </style>
 </head>
@@ -1146,22 +730,6 @@
                 <button class="nav-btn" data-page="stats">
                     <i class="fas fa-chart-line"></i>
                     <span class="nav-text">Stats</span>
-                </button>
-                <button class="nav-btn" data-page="nutrition">
-                    <i class="fas fa-apple-alt"></i>
-                    <span class="nav-text">Nutrition</span>
-                </button>
-                <button class="nav-btn" data-page="games">
-                    <i class="fas fa-gamepad"></i>
-                    <span class="nav-text">Jeux</span>
-                </button>
-                <button class="nav-btn" data-page="translator">
-                    <i class="fas fa-language"></i>
-                    <span class="nav-text">Traducteur</span>
-                </button>
-                <button class="nav-btn" data-page="community">
-                    <i class="fas fa-users"></i>
-                    <span class="nav-text">Communauté</span>
                 </button>
                 <button class="nav-btn" data-page="profile">
                     <i class="fas fa-user"></i>
@@ -1213,46 +781,7 @@
                     <i class="fas fa-music"></i>
                     <span>Musique d'entraînement</span>
                 </div>
-                
-                <!-- Intégration Spotify -->
-                <div class="spotify-player">
-                    <div class="spotify-login" id="spotify-login">
-                        <p>Connectez-vous à Spotify pour écouter votre musique pendant l'entraînement</p>
-                        <button class="spotify-btn" id="connect-spotify">
-                            <i class="fab fa-spotify"></i> Se connecter à Spotify
-                        </button>
-                    </div>
-                    
-                    <div id="spotify-player" style="display: none;">
-                        <div class="spotify-track">
-                            <img id="track-cover" src="" class="track-cover" alt="Cover">
-                            <div class="track-info">
-                                <div class="track-name" id="track-name">Titre de la musique</div>
-                                <div class="track-artist" id="track-artist">Artiste</div>
-                            </div>
-                        </div>
-                        <div class="music-controls">
-                            <button class="music-btn" id="prev-track">
-                                <i class="fas fa-step-backward"></i>
-                            </button>
-                            <button class="music-btn" id="play-track">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <button class="music-btn" id="next-track">
-                                <i class="fas fa-step-forward"></i>
-                            </button>
-                            <button class="music-btn" id="shuffle-track">
-                                <i class="fas fa-random"></i>
-                            </button>
-                        </div>
-                        <div class="progress-bar" style="margin: 10px 0;">
-                            <div class="progress-fill" id="track-progress" style="width: 0%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Lecteur de musique local (fallback) -->
-                <div class="music-player" id="local-music-player">
+                <div class="music-player">
                     <div class="music-info">
                         <div class="music-title" id="music-title">Aucune musique sélectionnée</div>
                         <div class="music-artist" id="music-artist">Importer votre musique</div>
@@ -1369,246 +898,6 @@
             </div>
         </div>
 
-        <!-- Page de nutrition -->
-        <div id="nutrition" class="page">
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-apple-alt"></i>
-                    <span>Suivi nutritionnel</span>
-                </div>
-                
-                <div class="nutrition-grid">
-                    <div class="nutrition-card">
-                        <div class="nutrition-value" id="calories-consumed">0</div>
-                        <div class="nutrition-label">Calories consommées</div>
-                    </div>
-                    <div class="nutrition-card">
-                        <div class="nutrition-value" id="calories-burned">0</div>
-                        <div class="nutrition-label">Calories brûlées</div>
-                    </div>
-                    <div class="nutrition-card">
-                        <div class="nutrition-value" id="protein-intake">0g</div>
-                        <div class="nutrition-label">Protéines</div>
-                    </div>
-                    <div class="nutrition-card">
-                        <div class="nutrition-value" id="water-intake">0L</div>
-                        <div class="nutrition-label">Eau</div>
-                    </div>
-                </div>
-                
-                <button class="btn btn-primary" id="add-nutrition">
-                    <i class="fas fa-plus"></i> Ajouter une entrée nutritionnelle
-                </button>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-utensils"></i>
-                    <span>Repas de la journée</span>
-                </div>
-                
-                <div id="meals-list">
-                    <!-- Les repas seront insérés ici par JavaScript -->
-                </div>
-                
-                <button class="btn btn-primary" id="add-meal" style="margin-top: 15px;">
-                    <i class="fas fa-plus"></i> Ajouter un repas
-                </button>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-book"></i>
-                    <span>Conseils nutritionnels</span>
-                </div>
-                
-                <div id="nutrition-tips">
-                    <!-- Les conseils seront insérés ici par JavaScript -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Page des jeux -->
-        <div id="games" class="page">
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-gamepad"></i>
-                    <span>Mini-jeux</span>
-                </div>
-                
-                <div class="games-grid">
-                    <div class="game-card" id="memory-game-btn">
-                        <div class="game-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="game-name">Mémoire</div>
-                        <div class="game-desc">Testez votre mémoire avec ce jeu de cartes</div>
-                    </div>
-                    
-                    <div class="game-card" id="reaction-game-btn">
-                        <div class="game-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="game-name">Réaction</div>
-                        <div class="game-desc">Testez votre temps de réaction</div>
-                    </div>
-                    
-                    <div class="game-card" id="math-game-btn">
-                        <div class="game-icon">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="game-name">Calcul mental</div>
-                        <div class="game-desc">Améliorez vos compétences en calcul</div>
-                    </div>
-                    
-                    <div class="game-card" id="word-game-btn">
-                        <div class="game-icon">
-                            <i class="fas fa-font"></i>
-                        </div>
-                        <div class="game-name">Mots mêlés</div>
-                        <div class="game-desc">Trouvez des mots dans une grille</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Jeu de mémoire -->
-            <div class="card" id="memory-game-container" style="display: none;">
-                <div class="card-title">
-                    <i class="fas fa-brain"></i>
-                    <span>Jeu de mémoire</span>
-                </div>
-                
-                <div class="game-stats">
-                    <div>Coups: <span id="memory-moves">0</span></div>
-                    <div>Temps: <span id="memory-time">0s</span></div>
-                    <div>Score: <span id="memory-score">0</span></div>
-                </div>
-                
-                <div class="memory-game" id="memory-game-board">
-                    <!-- Les cartes seront générées par JavaScript -->
-                </div>
-                
-                <div style="text-align: center; margin-top: 15px;">
-                    <button class="btn btn-primary" id="memory-restart">
-                        <i class="fas fa-redo"></i> Recommencer
-                    </button>
-                    <button class="btn btn-danger" id="memory-back">
-                        <i class="fas fa-arrow-left"></i> Retour
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Jeu de réaction -->
-            <div class="card" id="reaction-game-container" style="display: none;">
-                <div class="card-title">
-                    <i class="fas fa-bolt"></i>
-                    <span>Test de réaction</span>
-                </div>
-                
-                <div style="text-align: center; padding: 40px 0;">
-                    <div id="reaction-instruction" style="font-size: 1.2rem; margin-bottom: 20px;">
-                        Cliquez quand le carré devient vert
-                    </div>
-                    <div id="reaction-box" style="width: 200px; height: 200px; background-color: var(--primary); margin: 0 auto; border-radius: 8px; cursor: pointer;"></div>
-                    <div style="margin-top: 20px;">
-                        <div>Temps de réaction: <span id="reaction-time">-</span> ms</div>
-                        <div>Meilleur score: <span id="best-reaction">-</span> ms</div>
-                    </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 15px;">
-                    <button class="btn btn-primary" id="reaction-start">
-                        <i class="fas fa-play"></i> Commencer
-                    </button>
-                    <button class="btn btn-danger" id="reaction-back">
-                        <i class="fas fa-arrow-left"></i> Retour
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Page du traducteur -->
-        <div id="translator" class="page">
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-language"></i>
-                    <span>Traducteur</span>
-                </div>
-                
-                <div class="translator-container">
-                    <div class="language-selector">
-                        <button class="lang-btn active" data-lang="fr">Français</button>
-                        <button class="lang-btn" data-lang="en">English</button>
-                        <button class="lang-btn" data-lang="sw">Kiswahili</button>
-                        <button class="lang-btn" data-lang="es">Español</button>
-                    </div>
-                    
-                    <div class="translation-area">
-                        <textarea class="translation-input" id="translation-input" placeholder="Tapez votre texte ici..."></textarea>
-                        <button class="btn btn-primary" id="translate-btn">
-                            <i class="fas fa-exchange-alt"></i> Traduire
-                        </button>
-                        <textarea class="translation-output" id="translation-output" placeholder="Traduction apparaîtra ici..." readonly></textarea>
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-success" id="speak-input">
-                            <i class="fas fa-volume-up"></i> Écouter
-                        </button>
-                        <button class="btn btn-success" id="speak-output">
-                            <i class="fas fa-volume-up"></i> Écouter
-                        </button>
-                        <button class="btn btn-primary" id="copy-output">
-                            <i class="fas fa-copy"></i> Copier
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-history"></i>
-                    <span>Historique des traductions</span>
-                </div>
-                
-                <div id="translation-history">
-                    <!-- L'historique des traductions sera inséré ici par JavaScript -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Page de communauté -->
-        <div id="community" class="page">
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-users"></i>
-                    <span>Communauté FitProgress</span>
-                </div>
-                
-                <div id="community-posts">
-                    <!-- Les posts de la communauté seront insérés ici par JavaScript -->
-                </div>
-                
-                <div class="community-post" style="border: 1px solid var(--border); border-radius: 8px; margin-top: 15px;">
-                    <textarea class="note-textarea" id="new-post" placeholder="Partagez votre progression, posez une question ou encouragez les autres..."></textarea>
-                    <button class="btn btn-primary" id="publish-post">
-                        <i class="fas fa-paper-plane"></i> Publier
-                    </button>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-trophy"></i>
-                    <span>Classement de la communauté</span>
-                </div>
-                
-                <div id="community-ranking">
-                    <!-- Le classement sera inséré ici par JavaScript -->
-                </div>
-            </div>
-        </div>
-
         <!-- Page du profil -->
         <div id="profile" class="page">
             <div class="card">
@@ -1619,7 +908,6 @@
                     <div class="profile-info">
                         <div class="profile-name" id="profile-name">Athlète</div>
                         <div class="profile-level" id="profile-level">Niveau 1 - Débutant</div>
-                        <div class="profile-points" id="profile-points">0 points</div>
                     </div>
                 </div>
                 
@@ -1645,8 +933,6 @@
                     <div class="theme-selector">
                         <button class="theme-btn theme-light active" data-theme="light"></button>
                         <button class="theme-btn theme-dark" data-theme="dark"></button>
-                        <button class="theme-btn theme-blue" data-theme="blue"></button>
-                        <button class="theme-btn theme-green" data-theme="green"></button>
                     </div>
                 </div>
                 
@@ -1678,58 +964,19 @@
             
             <div class="card">
                 <div class="card-title">
+                    <i class="fas fa-download"></i>
+                    <span>Export des données</span>
+                </div>
+                <p>Exportez vos données de progression pour les sauvegarder ou les partager.</p>
+                <button class="btn btn-primary" id="export-data" style="margin-top: 15px;">
+                    <i class="fas fa-file-export"></i> Exporter mes données
+                </button>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
                     <i class="fas fa-sliders-h"></i>
                     <span>Paramètres avancés</span>
-                </div>
-                
-                <div class="advanced-settings">
-                    <div class="setting-group">
-                        <label class="setting-label">Nom d'utilisateur</label>
-                        <input type="text" class="setting-input" id="username-input" placeholder="Votre nom d'utilisateur">
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label class="setting-label">Objectif de poids (kg)</label>
-                        <input type="number" class="setting-input" id="weight-goal" placeholder="Votre objectif de poids">
-                    </div>
-                    
-                    <div class="setting-group">
-                        <label class="setting-label">Objectif de durée d'entraînement (min/jour)</label>
-                        <input type="number" class="setting-input" id="workout-duration-goal" placeholder="Durée d'entraînement quotidienne">
-                    </div>
-                    
-                    <button class="btn btn-primary" id="save-advanced-settings">
-                        <i class="fas fa-save"></i> Sauvegarder les paramètres
-                    </button>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-download"></i>
-                    <span>Sauvegarde et restauration</span>
-                </div>
-                
-                <div class="backup-info">
-                    <p><strong>Conseil de sauvegarde:</strong> Exportez régulièrement vos données pour ne pas perdre votre progression.</p>
-                </div>
-                
-                <div class="restore-section">
-                    <button class="btn btn-primary" id="export-data">
-                        <i class="fas fa-file-export"></i> Exporter mes données
-                    </button>
-                    
-                    <input type="file" id="import-file" class="file-input" accept=".json">
-                    <label for="import-file" class="file-label">
-                        <i class="fas fa-file-import"></i> Importer une sauvegarde
-                    </label>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>Zone de danger</span>
                 </div>
                 
                 <div class="settings-option">
@@ -1899,85 +1146,6 @@
             { id: "perfectionist", name: "Perfectionniste", icon: "fa-gem", description: "100% des exercices d'une semaine complétés" }
         ];
 
-        // Dictionnaire de traduction
-        const translationDictionary = {
-            'fr': {
-                'hello': 'bonjour',
-                'good morning': 'bonjour',
-                'good evening': 'bonsoir',
-                'how are you': 'comment allez-vous',
-                'thank you': 'merci',
-                'goodbye': 'au revoir',
-                'please': 's\'il vous plaît',
-                'yes': 'oui',
-                'no': 'non',
-                'water': 'eau',
-                'food': 'nourriture',
-                'exercise': 'exercice',
-                'training': 'entraînement',
-                'strong': 'fort',
-                'health': 'santé',
-                'energy': 'énergie',
-                'motivation': 'motivation'
-            },
-            'en': {
-                'bonjour': 'hello',
-                'bonsoir': 'good evening',
-                'comment allez-vous': 'how are you',
-                'merci': 'thank you',
-                'au revoir': 'goodbye',
-                's\'il vous plaît': 'please',
-                'oui': 'yes',
-                'non': 'no',
-                'eau': 'water',
-                'nourriture': 'food',
-                'exercice': 'exercise',
-                'entraînement': 'training',
-                'fort': 'strong',
-                'santé': 'health',
-                'énergie': 'energy',
-                'motivation': 'motivation'
-            },
-            'sw': {
-                'hello': 'hujambo',
-                'good morning': 'habari za asubuhi',
-                'good evening': 'habari za jioni',
-                'how are you': 'habari yako',
-                'thank you': 'asante',
-                'goodbye': 'kwaheri',
-                'please': 'tafadhali',
-                'yes': 'ndiyo',
-                'no': 'hapana',
-                'water': 'maji',
-                'food': 'chakula',
-                'exercise': 'mazoezi',
-                'training': 'mafunzo',
-                'strong': 'imara',
-                'health': 'afya',
-                'energy': 'nishati',
-                'motivation': 'motisha'
-            },
-            'es': {
-                'hello': 'hola',
-                'good morning': 'buenos días',
-                'good evening': 'buenas tardes',
-                'how are you': 'cómo estás',
-                'thank you': 'gracias',
-                'goodbye': 'adiós',
-                'please': 'por favor',
-                'yes': 'sí',
-                'no': 'no',
-                'water': 'agua',
-                'food': 'comida',
-                'exercise': 'ejercicio',
-                'training': 'entrenamiento',
-                'strong': 'fuerte',
-                'health': 'salud',
-                'energy': 'energía',
-                'motivation': 'motivación'
-            }
-        };
-
         // Éléments DOM
         const pages = document.querySelectorAll('.page');
         const navButtons = document.querySelectorAll('.nav-btn');
@@ -2014,14 +1182,12 @@
         const progressChart = document.getElementById('progress-chart');
         const profileName = document.getElementById('profile-name');
         const profileLevel = document.getElementById('profile-level');
-        const profilePoints = document.getElementById('profile-points');
         const weeklyGoal = document.getElementById('weekly-goal');
         const themeButtons = document.querySelectorAll('.theme-btn');
         const remindersToggle = document.getElementById('reminders-toggle');
         const progressPhotos = document.getElementById('progress-photos');
         const photoUpload = document.getElementById('photo-upload');
         const exportDataBtn = document.getElementById('export-data');
-        const importFile = document.getElementById('import-file');
         const weekNotes = document.getElementById('week-notes');
         const saveNotesBtn = document.getElementById('save-notes');
         const musicFile = document.getElementById('music-file');
@@ -2030,59 +1196,6 @@
         const playMusicBtn = document.getElementById('play-music');
         const prevMusicBtn = document.getElementById('prev-music');
         const nextMusicBtn = document.getElementById('next-music');
-        const connectSpotifyBtn = document.getElementById('connect-spotify');
-        const spotifyLogin = document.getElementById('spotify-login');
-        const spotifyPlayer = document.getElementById('spotify-player');
-        const trackCover = document.getElementById('track-cover');
-        const trackName = document.getElementById('track-name');
-        const trackArtist = document.getElementById('track-artist');
-        const playTrackBtn = document.getElementById('play-track');
-        const prevTrackBtn = document.getElementById('prev-track');
-        const nextTrackBtn = document.getElementById('next-track');
-        const shuffleTrackBtn = document.getElementById('shuffle-track');
-        const trackProgress = document.getElementById('track-progress');
-        const caloriesConsumed = document.getElementById('calories-consumed');
-        const caloriesBurned = document.getElementById('calories-burned');
-        const proteinIntake = document.getElementById('protein-intake');
-        const waterIntake = document.getElementById('water-intake');
-        const addNutritionBtn = document.getElementById('add-nutrition');
-        const mealsList = document.getElementById('meals-list');
-        const addMealBtn = document.getElementById('add-meal');
-        const nutritionTips = document.getElementById('nutrition-tips');
-        const communityPosts = document.getElementById('community-posts');
-        const newPost = document.getElementById('new-post');
-        const publishPostBtn = document.getElementById('publish-post');
-        const communityRanking = document.getElementById('community-ranking');
-        const usernameInput = document.getElementById('username-input');
-        const weightGoal = document.getElementById('weight-goal');
-        const workoutDurationGoal = document.getElementById('workout-duration-goal');
-        const saveAdvancedSettingsBtn = document.getElementById('save-advanced-settings');
-        const memoryGameBtn = document.getElementById('memory-game-btn');
-        const reactionGameBtn = document.getElementById('reaction-game-btn');
-        const mathGameBtn = document.getElementById('math-game-btn');
-        const wordGameBtn = document.getElementById('word-game-btn');
-        const memoryGameContainer = document.getElementById('memory-game-container');
-        const reactionGameContainer = document.getElementById('reaction-game-container');
-        const memoryGameBoard = document.getElementById('memory-game-board');
-        const memoryMoves = document.getElementById('memory-moves');
-        const memoryTime = document.getElementById('memory-time');
-        const memoryScore = document.getElementById('memory-score');
-        const memoryRestart = document.getElementById('memory-restart');
-        const memoryBack = document.getElementById('memory-back');
-        const reactionInstruction = document.getElementById('reaction-instruction');
-        const reactionBox = document.getElementById('reaction-box');
-        const reactionTime = document.getElementById('reaction-time');
-        const bestReaction = document.getElementById('best-reaction');
-        const reactionStart = document.getElementById('reaction-start');
-        const reactionBack = document.getElementById('reaction-back');
-        const langButtons = document.querySelectorAll('.lang-btn');
-        const translationInput = document.getElementById('translation-input');
-        const translationOutput = document.getElementById('translation-output');
-        const translateBtn = document.getElementById('translate-btn');
-        const speakInput = document.getElementById('speak-input');
-        const speakOutput = document.getElementById('speak-output');
-        const copyOutput = document.getElementById('copy-output');
-        const translationHistory = document.getElementById('translation-history');
 
         // Variables d'état
         let currentWeekNumber = 1;
@@ -2093,26 +1206,10 @@
             name: "Athlète",
             weeklyGoal: 5,
             theme: "light",
-            reminders: false,
-            username: "",
-            weightGoal: 0,
-            workoutDurationGoal: 30,
-            points: 0
+            reminders: false
         };
         let weekNotesData = JSON.parse(localStorage.getItem('weekNotes')) || {};
         let progressPhotosData = JSON.parse(localStorage.getItem('progressPhotos')) || [];
-        let nutritionData = JSON.parse(localStorage.getItem('nutritionData')) || {
-            caloriesConsumed: 0,
-            caloriesBurned: 0,
-            proteinIntake: 0,
-            waterIntake: 0,
-            meals: []
-        };
-        let communityData = JSON.parse(localStorage.getItem('communityData')) || {
-            posts: [],
-            ranking: []
-        };
-        let translationHistoryData = JSON.parse(localStorage.getItem('translationHistory')) || [];
         let currentTimer = null;
         let currentExerciseId = null;
         let timerInterval = null;
@@ -2121,24 +1218,6 @@
         let currentMusicIndex = 0;
         let audioPlayer = new Audio();
         let isPlaying = false;
-        let spotifyConnected = false;
-        let spotifyPlayerInstance = null;
-        let currentSourceLang = 'fr';
-        let currentTargetLang = 'en';
-        let memoryGameState = {
-            cards: [],
-            flippedCards: [],
-            matchedCards: [],
-            moves: 0,
-            time: 0,
-            timer: null,
-            gameStarted: false
-        };
-        let reactionGameState = {
-            waiting: false,
-            startTime: 0,
-            bestTime: localStorage.getItem('bestReactionTime') || null
-        };
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
@@ -2147,9 +1226,6 @@
             loadUserSettings();
             loadWeekNotes();
             loadProgressPhotos();
-            loadNutritionData();
-            loadCommunityData();
-            loadTranslationHistory();
             
             // Afficher la page d'accueil
             showPage('home');
@@ -2172,18 +1248,6 @@
             // Afficher l'historique
             displayWorkoutHistory();
             
-            // Afficher les données nutritionnelles
-            displayNutritionData();
-            
-            // Afficher les posts de la communauté
-            displayCommunityPosts();
-            
-            // Afficher le classement
-            displayCommunityRanking();
-            
-            // Afficher l'historique des traductions
-            displayTranslationHistory();
-            
             // Configurer les écouteurs d'événements
             setupEventListeners();
             
@@ -2192,14 +1256,6 @@
             
             // Vérifier si une semaine est terminée
             checkWeekCompletion();
-            
-            // Mettre à jour le niveau de l'utilisateur
-            updateUserLevel();
-            
-            // Mettre à jour le meilleur temps de réaction
-            if (reactionGameState.bestTime) {
-                bestReaction.textContent = reactionGameState.bestTime;
-            }
         });
 
         // Configuration des écouteurs d'événements
@@ -2250,36 +1306,17 @@
                     localStorage.removeItem('earnedBadges');
                     localStorage.removeItem('weekNotes');
                     localStorage.removeItem('progressPhotos');
-                    localStorage.removeItem('nutritionData');
-                    localStorage.removeItem('communityData');
-                    localStorage.removeItem('translationHistory');
                     completedExercises = {};
                     workoutHistoryData = [];
                     earnedBadges = [];
                     weekNotesData = {};
                     progressPhotosData = [];
-                    nutritionData = {
-                        caloriesConsumed: 0,
-                        caloriesBurned: 0,
-                        proteinIntake: 0,
-                        waterIntake: 0,
-                        meals: []
-                    };
-                    communityData = {
-                        posts: [],
-                        ranking: []
-                    };
-                    translationHistoryData = [];
                     loadProgress();
                     displayTodayProgram();
                     displayWeekProgram();
                     displayStats();
                     displayBadges();
                     displayWorkoutHistory();
-                    displayNutritionData();
-                    displayCommunityPosts();
-                    displayCommunityRanking();
-                    displayTranslationHistory();
                     alert("Progression réinitialisée avec succès !");
                 }
             });
@@ -2330,22 +1367,6 @@
             // Export des données
             exportDataBtn.addEventListener('click', exportData);
             
-            // Import des données
-            importFile.addEventListener('change', function(e) {
-                if (e.target.files && e.target.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        try {
-                            const importedData = JSON.parse(event.target.result);
-                            restoreData(importedData);
-                        } catch (error) {
-                            alert("Erreur lors de l'importation des données. Le fichier est peut-être corrompu.");
-                        }
-                    };
-                    reader.readAsText(e.target.files[0]);
-                }
-            });
-            
             // Notes de la semaine
             saveNotesBtn.addEventListener('click', saveWeekNotes);
             
@@ -2363,50 +1384,6 @@
             nextMusicBtn.addEventListener('click', nextMusic);
             
             audioPlayer.addEventListener('ended', nextMusic);
-            
-            // Spotify
-            connectSpotifyBtn.addEventListener('click', connectSpotify);
-            playTrackBtn.addEventListener('click', toggleSpotifyPlayback);
-            prevTrackBtn.addEventListener('click', prevSpotifyTrack);
-            nextTrackBtn.addEventListener('click', nextSpotifyTrack);
-            shuffleTrackBtn.addEventListener('click', shuffleSpotifyTracks);
-            
-            // Nutrition
-            addNutritionBtn.addEventListener('click', addNutritionEntry);
-            addMealBtn.addEventListener('click', addMeal);
-            
-            // Communauté
-            publishPostBtn.addEventListener('click', publishPost);
-            
-            // Paramètres avancés
-            saveAdvancedSettingsBtn.addEventListener('click', saveAdvancedSettings);
-            
-            // Jeux
-            memoryGameBtn.addEventListener('click', showMemoryGame);
-            reactionGameBtn.addEventListener('click', showReactionGame);
-            mathGameBtn.addEventListener('click', showMathGame);
-            wordGameBtn.addEventListener('click', showWordGame);
-            memoryRestart.addEventListener('click', initMemoryGame);
-            memoryBack.addEventListener('click', hideMemoryGame);
-            reactionStart.addEventListener('click', startReactionGame);
-            reactionBack.addEventListener('click', hideReactionGame);
-            reactionBox.addEventListener('click', handleReactionClick);
-            
-            // Traducteur
-            langButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    setTargetLanguage(lang);
-                    
-                    langButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-            
-            translateBtn.addEventListener('click', translateText);
-            speakInput.addEventListener('click', speakInputText);
-            speakOutput.addEventListener('click', speakOutputText);
-            copyOutput.addEventListener('click', copyTranslation);
         }
 
         // Afficher une page spécifique
@@ -2416,12 +1393,6 @@
             });
             document.getElementById(pageId).classList.add('active');
             
-            // Masquer les jeux si on change de page
-            if (pageId !== 'games') {
-                hideMemoryGame();
-                hideReactionGame();
-            }
-            
             // Mettre à jour les données si nécessaire
             if (pageId === 'stats') {
                 displayStats();
@@ -2429,13 +1400,6 @@
                 displayWorkoutHistory();
             } else if (pageId === 'profile') {
                 displayProgressPhotos();
-            } else if (pageId === 'nutrition') {
-                displayNutritionData();
-            } else if (pageId === 'community') {
-                displayCommunityPosts();
-                displayCommunityRanking();
-            } else if (pageId === 'translator') {
-                displayTranslationHistory();
             }
         }
 
@@ -2659,11 +1623,6 @@
                 workoutHistoryData.unshift(historyEntry);
                 localStorage.setItem('workoutHistory', JSON.stringify(workoutHistoryData));
                 
-                // Ajouter des points
-                userSettings.points += 10;
-                saveUserSettings();
-                updateUserLevel();
-                
                 // Vérifier les badges
                 checkBadges();
                 
@@ -2696,10 +1655,6 @@
                 weeklyGoal.value = userSettings.weeklyGoal;
                 setTheme(userSettings.theme);
                 remindersToggle.checked = userSettings.reminders;
-                profilePoints.textContent = `${userSettings.points} points`;
-                usernameInput.value = userSettings.username;
-                weightGoal.value = userSettings.weightGoal;
-                workoutDurationGoal.value = userSettings.workoutDurationGoal;
                 
                 // Mettre à jour les boutons de thème
                 themeButtons.forEach(btn => {
@@ -2767,267 +1722,6 @@
                     </div>
                 `;
                 progressPhotos.appendChild(photoElement);
-            });
-        }
-
-        // Charger les données nutritionnelles
-        function loadNutritionData() {
-            const savedNutrition = localStorage.getItem('nutritionData');
-            if (savedNutrition) {
-                nutritionData = JSON.parse(savedNutrition);
-            }
-        }
-
-        // Sauvegarder les données nutritionnelles
-        function saveNutritionData() {
-            localStorage.setItem('nutritionData', JSON.stringify(nutritionData));
-        }
-
-        // Afficher les données nutritionnelles
-        function displayNutritionData() {
-            // Mettre à jour les valeurs
-            caloriesConsumed.textContent = nutritionData.caloriesConsumed;
-            caloriesBurned.textContent = nutritionData.caloriesBurned;
-            proteinIntake.textContent = `${nutritionData.proteinIntake}g`;
-            waterIntake.textContent = `${nutritionData.waterIntake}L`;
-            
-            // Afficher les repas
-            mealsList.innerHTML = '';
-            
-            if (nutritionData.meals.length === 0) {
-                mealsList.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucun repas enregistré aujourd\'hui</p>';
-            } else {
-                nutritionData.meals.forEach(meal => {
-                    const mealElement = document.createElement('div');
-                    mealElement.className = 'progress-item';
-                    mealElement.innerHTML = `
-                        <div>
-                            <div class="progress-date">${meal.name}</div>
-                            <div class="history-session">${meal.calories} calories</div>
-                        </div>
-                        <div class="progress-value">${meal.time}</div>
-                    `;
-                    mealsList.appendChild(mealElement);
-                });
-            }
-            
-            // Afficher les conseils nutritionnels
-            displayNutritionTips();
-        }
-
-        // Afficher les conseils nutritionnels
-        function displayNutritionTips() {
-            const tips = [
-                "Buvez au moins 2L d'eau par jour pour une bonne hydratation.",
-                "Consommez des protéines à chaque repas pour favoriser la récupération musculaire.",
-                "Privilégiez les glucides complexes (riz complet, patates douces) pour une énergie durable.",
-                "Les légumes verts sont riches en nutriments essentiels, consommez-en à volonté.",
-                "Évitez les aliments transformés et privilégiez les aliments naturels."
-            ];
-            
-            nutritionTips.innerHTML = '';
-            
-            tips.forEach(tip => {
-                const tipElement = document.createElement('div');
-                tipElement.className = 'progress-item';
-                tipElement.innerHTML = `
-                    <div>
-                        <i class="fas fa-lightbulb" style="color: var(--warning); margin-right: 10px;"></i>
-                        <span>${tip}</span>
-                    </div>
-                `;
-                nutritionTips.appendChild(tipElement);
-            });
-        }
-
-        // Ajouter une entrée nutritionnelle
-        function addNutritionEntry() {
-            const calories = prompt("Nombre de calories consommées :");
-            if (calories && !isNaN(calories)) {
-                nutritionData.caloriesConsumed += parseInt(calories);
-                saveNutritionData();
-                displayNutritionData();
-            }
-            
-            const protein = prompt("Quantité de protéines consommées (en g) :");
-            if (protein && !isNaN(protein)) {
-                nutritionData.proteinIntake += parseInt(protein);
-                saveNutritionData();
-                displayNutritionData();
-            }
-            
-            const water = prompt("Quantité d'eau bue (en L) :");
-            if (water && !isNaN(water)) {
-                nutritionData.waterIntake += parseFloat(water);
-                saveNutritionData();
-                displayNutritionData();
-            }
-        }
-
-        // Ajouter un repas
-        function addMeal() {
-            const name = prompt("Nom du repas :");
-            if (!name) return;
-            
-            const calories = prompt("Nombre de calories :");
-            if (!calories || isNaN(calories)) return;
-            
-            const time = prompt("Heure du repas (ex: 12:30) :");
-            if (!time) return;
-            
-            const meal = {
-                name: name,
-                calories: parseInt(calories),
-                time: time
-            };
-            
-            nutritionData.meals.push(meal);
-            nutritionData.caloriesConsumed += parseInt(calories);
-            saveNutritionData();
-            displayNutritionData();
-        }
-
-        // Charger les données de la communauté
-        function loadCommunityData() {
-            const savedCommunity = localStorage.getItem('communityData');
-            if (savedCommunity) {
-                communityData = JSON.parse(savedCommunity);
-            }
-        }
-
-        // Sauvegarder les données de la communauté
-        function saveCommunityData() {
-            localStorage.setItem('communityData', JSON.stringify(communityData));
-        }
-
-        // Afficher les posts de la communauté
-        function displayCommunityPosts() {
-            communityPosts.innerHTML = '';
-            
-            if (communityData.posts.length === 0) {
-                communityPosts.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucun post dans la communauté</p>';
-                return;
-            }
-            
-            communityData.posts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.className = 'community-post';
-                postElement.innerHTML = `
-                    <div class="post-header">
-                        <div class="post-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div>
-                            <div class="post-user">${post.user}</div>
-                            <div class="post-time">${post.time}</div>
-                        </div>
-                    </div>
-                    <div class="post-content">${post.content}</div>
-                    <div class="post-actions">
-                        <div class="post-action">
-                            <i class="fas fa-heart"></i>
-                            <span>${post.likes}</span>
-                        </div>
-                        <div class="post-action">
-                            <i class="fas fa-comment"></i>
-                            <span>${post.comments}</span>
-                        </div>
-                    </div>
-                `;
-                communityPosts.appendChild(postElement);
-            });
-        }
-
-        // Afficher le classement de la communauté
-        function displayCommunityRanking() {
-            communityRanking.innerHTML = '';
-            
-            // Générer un classement fictif
-            const ranking = [
-                { name: "Marie", points: 1250 },
-                { name: "Pierre", points: 980 },
-                { name: "Sophie", points: 870 },
-                { name: "Jean", points: 750 },
-                { name: "Alice", points: 620 }
-            ];
-            
-            ranking.forEach((user, index) => {
-                const rankElement = document.createElement('div');
-                rankElement.className = 'progress-item';
-                rankElement.innerHTML = `
-                    <div>
-                        <span style="font-weight: bold; margin-right: 10px;">${index + 1}.</span>
-                        <span>${user.name}</span>
-                    </div>
-                    <div class="progress-value">${user.points} pts</div>
-                `;
-                communityRanking.appendChild(rankElement);
-            });
-        }
-
-        // Publier un post
-        function publishPost() {
-            const content = newPost.value.trim();
-            if (!content) {
-                alert("Veuillez écrire un message avant de publier.");
-                return;
-            }
-            
-            const now = new Date();
-            const post = {
-                user: userSettings.username || "Anonyme",
-                content: content,
-                time: now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}),
-                likes: 0,
-                comments: 0
-            };
-            
-            communityData.posts.unshift(post);
-            saveCommunityData();
-            displayCommunityPosts();
-            
-            newPost.value = '';
-            alert("Post publié avec succès !");
-        }
-
-        // Charger l'historique des traductions
-        function loadTranslationHistory() {
-            const savedHistory = localStorage.getItem('translationHistory');
-            if (savedHistory) {
-                translationHistoryData = JSON.parse(savedHistory);
-            }
-        }
-
-        // Sauvegarder l'historique des traductions
-        function saveTranslationHistory() {
-            localStorage.setItem('translationHistory', JSON.stringify(translationHistoryData));
-        }
-
-        // Afficher l'historique des traductions
-        function displayTranslationHistory() {
-            translationHistory.innerHTML = '';
-            
-            if (translationHistoryData.length === 0) {
-                translationHistory.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucune traduction enregistrée</p>';
-                return;
-            }
-            
-            // Afficher les 10 dernières traductions
-            const recentTranslations = translationHistoryData.slice(0, 10);
-            
-            recentTranslations.forEach(translation => {
-                const translationElement = document.createElement('div');
-                translationElement.className = 'history-item';
-                translationElement.innerHTML = `
-                    <div>
-                        <div class="history-date">${translation.text}</div>
-                        <div class="history-session">${translation.translation}</div>
-                    </div>
-                    <div>
-                        <span style="font-size: 0.8rem; color: var(--text-light);">${translation.from} → ${translation.to}</span>
-                    </div>
-                `;
-                translationHistory.appendChild(translationElement);
             });
         }
 
@@ -3305,11 +1999,6 @@
                 completedExercises[`week${currentWeekNumber}_completed`] = true;
                 localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
                 
-                // Ajouter des points
-                userSettings.points += 100;
-                saveUserSettings();
-                updateUserLevel();
-                
                 // Afficher l'écran de félicitations
                 celebrationMessage.textContent = `Vous avez terminé la semaine ${currentWeekNumber} !`;
                 celebration.classList.add('active');
@@ -3344,9 +2033,10 @@
 
         // Définir le thème
         function setTheme(theme) {
-            document.body.className = '';
-            if (theme !== 'light') {
-                document.body.classList.add(`theme-${theme}`);
+            if (theme === 'dark') {
+                document.body.classList.add('theme-dark');
+            } else {
+                document.body.classList.remove('theme-dark');
             }
             
             userSettings.theme = theme;
@@ -3377,9 +2067,6 @@
                 userSettings: userSettings,
                 weekNotes: weekNotesData,
                 progressPhotos: progressPhotosData.length,
-                nutritionData: nutritionData,
-                communityData: communityData,
-                translationHistory: translationHistoryData,
                 exportDate: new Date().toISOString()
             };
             
@@ -3396,55 +2083,6 @@
             URL.revokeObjectURL(url);
             
             alert("Données exportées avec succès !");
-        }
-
-        // Restaurer les données
-        function restoreData(importedData) {
-            if (confirm("Voulez-vous vraiment restaurer cette sauvegarde ? Vos données actuelles seront écrasées.")) {
-                try {
-                    if (importedData.completedExercises) completedExercises = importedData.completedExercises;
-                    if (importedData.workoutHistory) workoutHistoryData = importedData.workoutHistory;
-                    if (importedData.earnedBadges) earnedBadges = importedData.earnedBadges;
-                    if (importedData.userSettings) userSettings = importedData.userSettings;
-                    if (importedData.weekNotes) weekNotesData = importedData.weekNotes;
-                    if (importedData.nutritionData) nutritionData = importedData.nutritionData;
-                    if (importedData.communityData) communityData = importedData.communityData;
-                    if (importedData.translationHistory) translationHistoryData = importedData.translationHistory;
-                    
-                    // Sauvegarder les données restaurées
-                    localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
-                    localStorage.setItem('workoutHistory', JSON.stringify(workoutHistoryData));
-                    localStorage.setItem('earnedBadges', JSON.stringify(earnedBadges));
-                    localStorage.setItem('userSettings', JSON.stringify(userSettings));
-                    localStorage.setItem('weekNotes', JSON.stringify(weekNotesData));
-                    localStorage.setItem('nutritionData', JSON.stringify(nutritionData));
-                    localStorage.setItem('communityData', JSON.stringify(communityData));
-                    localStorage.setItem('translationHistory', JSON.stringify(translationHistoryData));
-                    
-                    // Recharger l'interface
-                    loadProgress();
-                    loadUserSettings();
-                    loadWeekNotes();
-                    loadNutritionData();
-                    loadCommunityData();
-                    loadTranslationHistory();
-                    
-                    displayTodayProgram();
-                    displayWeekProgram();
-                    displayStats();
-                    displayBadges();
-                    displayWorkoutHistory();
-                    displayNutritionData();
-                    displayCommunityPosts();
-                    displayCommunityRanking();
-                    displayTranslationHistory();
-                    updateUserLevel();
-                    
-                    alert("Sauvegarde restaurée avec succès !");
-                } catch (error) {
-                    alert("Erreur lors de la restauration des données.");
-                }
-            }
         }
 
         // Charger la musique
@@ -3500,93 +2138,6 @@
             }
         }
 
-        // Connexion à Spotify (simulée)
-        function connectSpotify() {
-            // Dans une vraie application, vous utiliseriez l'API Spotify
-            // Ici, nous simulons la connexion
-            spotifyConnected = true;
-            spotifyLogin.style.display = 'none';
-            spotifyPlayer.style.display = 'flex';
-            
-            // Simuler le chargement d'une piste
-            trackCover.src = "https://via.placeholder.com/60";
-            trackName.textContent = "Workout Motivation Mix";
-            trackArtist.textContent = "Various Artists";
-            
-            // Simuler la progression de la piste
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                if (progress < 100) {
-                    progress += 0.5;
-                    trackProgress.style.width = `${progress}%`;
-                } else {
-                    clearInterval(progressInterval);
-                }
-            }, 1000);
-            
-            alert("Connecté à Spotify avec succès !");
-        }
-
-        // Basculer la lecture Spotify
-        function toggleSpotifyPlayback() {
-            if (!spotifyConnected) {
-                alert("Veuillez d'abord vous connecter à Spotify");
-                return;
-            }
-            
-            // Simulation de lecture
-            const icon = playTrackBtn.querySelector('i');
-            if (icon.classList.contains('fa-play')) {
-                icon.classList.remove('fa-play');
-                icon.classList.add('fa-pause');
-                alert("Lecture de la musique Spotify...");
-            } else {
-                icon.classList.remove('fa-pause');
-                icon.classList.add('fa-play');
-                alert("Musique Spotify en pause");
-            }
-        }
-
-        // Piste Spotify précédente
-        function prevSpotifyTrack() {
-            if (!spotifyConnected) {
-                alert("Veuillez d'abord vous connecter à Spotify");
-                return;
-            }
-            
-            alert("Piste précédente");
-        }
-
-        // Piste Spotify suivante
-        function nextSpotifyTrack() {
-            if (!spotifyConnected) {
-                alert("Veuillez d'abord vous connecter à Spotify");
-                return;
-            }
-            
-            alert("Piste suivante");
-        }
-
-        // Mélanger les pistes Spotify
-        function shuffleSpotifyTracks() {
-            if (!spotifyConnected) {
-                alert("Veuillez d'abord vous connecter à Spotify");
-                return;
-            }
-            
-            alert("Lecture aléatoire activée");
-        }
-
-        // Sauvegarder les paramètres avancés
-        function saveAdvancedSettings() {
-            userSettings.username = usernameInput.value;
-            userSettings.weightGoal = parseInt(weightGoal.value) || 0;
-            userSettings.workoutDurationGoal = parseInt(workoutDurationGoal.value) || 30;
-            
-            saveUserSettings();
-            alert("Paramètres avancés sauvegardés !");
-        }
-
         // Mettre à jour le niveau de l'utilisateur
         function updateUserLevel() {
             const totalExercises = Object.keys(completedExercises).length;
@@ -3605,279 +2156,6 @@
             }
             
             profileLevel.textContent = `Niveau ${level} - ${levelName}`;
-            profilePoints.textContent = `${userSettings.points} points`;
-        }
-
-        // Jeu de mémoire
-        function showMemoryGame() {
-            document.querySelector('.games-grid').style.display = 'none';
-            memoryGameContainer.style.display = 'block';
-            initMemoryGame();
-        }
-
-        function hideMemoryGame() {
-            document.querySelector('.games-grid').style.display = 'grid';
-            memoryGameContainer.style.display = 'none';
-            stopMemoryGame();
-        }
-
-        function initMemoryGame() {
-            // Réinitialiser l'état du jeu
-            memoryGameState = {
-                cards: [],
-                flippedCards: [],
-                matchedCards: [],
-                moves: 0,
-                time: 0,
-                timer: null,
-                gameStarted: false
-            };
-            
-            // Mettre à jour l'affichage
-            memoryMoves.textContent = '0';
-            memoryTime.textContent = '0s';
-            memoryScore.textContent = '0';
-            
-            // Créer les cartes
-            const symbols = ['🍎', '🍌', '🍒', '🍇', '🍊', '🍓', '🍉', '🍑'];
-            const cards = [...symbols, ...symbols]; // Dupliquer pour avoir des paires
-            
-            // Mélanger les cartes
-            for (let i = cards.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [cards[i], cards[j]] = [cards[j], cards[i]];
-            }
-            
-            memoryGameState.cards = cards;
-            
-            // Afficher les cartes
-            memoryGameBoard.innerHTML = '';
-            cards.forEach((symbol, index) => {
-                const card = document.createElement('div');
-                card.className = 'memory-card';
-                card.dataset.index = index;
-                card.dataset.symbol = symbol;
-                card.textContent = '?';
-                card.addEventListener('click', handleMemoryCardClick);
-                memoryGameBoard.appendChild(card);
-            });
-        }
-
-        function handleMemoryCardClick(e) {
-            const card = e.target;
-            const index = parseInt(card.dataset.index);
-            
-            // Ne pas permettre de cliquer sur une carte déjà retournée ou appariée
-            if (card.classList.contains('flipped') || card.classList.contains('matched')) {
-                return;
-            }
-            
-            // Démarrer le timer si c'est la première carte
-            if (!memoryGameState.gameStarted) {
-                startMemoryTimer();
-                memoryGameState.gameStarted = true;
-            }
-            
-            // Retourner la carte
-            card.textContent = card.dataset.symbol;
-            card.classList.add('flipped');
-            memoryGameState.flippedCards.push({ card, index, symbol: card.dataset.symbol });
-            
-            // Vérifier si deux cartes sont retournées
-            if (memoryGameState.flippedCards.length === 2) {
-                memoryGameState.moves++;
-                memoryMoves.textContent = memoryGameState.moves;
-                
-                const [card1, card2] = memoryGameState.flippedCards;
-                
-                if (card1.symbol === card2.symbol) {
-                    // Cartes identiques - les marquer comme appariées
-                    card1.card.classList.add('matched');
-                    card2.card.classList.add('matched');
-                    memoryGameState.matchedCards.push(card1, card2);
-                    
-                    // Mettre à jour le score
-                    memoryGameState.score = memoryGameState.matchedCards.length / 2;
-                    memoryScore.textContent = memoryGameState.score;
-                    
-                    // Vérifier si le jeu est terminé
-                    if (memoryGameState.matchedCards.length === memoryGameState.cards.length) {
-                        setTimeout(() => {
-                            alert(`Félicitations ! Vous avez terminé le jeu en ${memoryGameState.moves} coups et ${memoryGameState.time} secondes !`);
-                            stopMemoryGame();
-                        }, 500);
-                    }
-                } else {
-                    // Cartes différentes - les retourner après un délai
-                    setTimeout(() => {
-                        card1.card.textContent = '?';
-                        card2.card.textContent = '?';
-                        card1.card.classList.remove('flipped');
-                        card2.card.classList.remove('flipped');
-                    }, 1000);
-                }
-                
-                // Vider les cartes retournées
-                memoryGameState.flippedCards = [];
-            }
-        }
-
-        function startMemoryTimer() {
-            memoryGameState.timer = setInterval(() => {
-                memoryGameState.time++;
-                memoryTime.textContent = `${memoryGameState.time}s`;
-            }, 1000);
-        }
-
-        function stopMemoryGame() {
-            if (memoryGameState.timer) {
-                clearInterval(memoryGameState.timer);
-                memoryGameState.timer = null;
-            }
-        }
-
-        // Jeu de réaction
-        function showReactionGame() {
-            document.querySelector('.games-grid').style.display = 'none';
-            reactionGameContainer.style.display = 'block';
-            resetReactionGame();
-        }
-
-        function hideReactionGame() {
-            document.querySelector('.games-grid').style.display = 'grid';
-            reactionGameContainer.style.display = 'none';
-            resetReactionGame();
-        }
-
-        function resetReactionGame() {
-            reactionGameState.waiting = false;
-            reactionBox.style.backgroundColor = var(--primary);
-            reactionInstruction.textContent = "Cliquez quand le carré devient vert";
-            reactionTime.textContent = "-";
-        }
-
-        function startReactionGame() {
-            if (reactionGameState.waiting) return;
-            
-            reactionInstruction.textContent = "Préparez-vous...";
-            reactionBox.style.backgroundColor = var(--warning);
-            
-            // Délai aléatoire entre 2 et 5 secondes
-            const delay = Math.random() * 3000 + 2000;
-            
-            setTimeout(() => {
-                reactionInstruction.textContent = "CLIQUEZ MAINTENANT !";
-                reactionBox.style.backgroundColor = var(--success);
-                reactionGameState.waiting = true;
-                reactionGameState.startTime = Date.now();
-            }, delay);
-        }
-
-        function handleReactionClick() {
-            if (!reactionGameState.waiting) {
-                startReactionGame();
-                return;
-            }
-            
-            const reactionTimeMs = Date.now() - reactionGameState.startTime;
-            reactionTime.textContent = reactionTimeMs;
-            
-            // Mettre à jour le meilleur score
-            if (!reactionGameState.bestTime || reactionTimeMs < reactionGameState.bestTime) {
-                reactionGameState.bestTime = reactionTimeMs;
-                bestReaction.textContent = reactionTimeMs;
-                localStorage.setItem('bestReactionTime', reactionTimeMs);
-            }
-            
-            reactionGameState.waiting = false;
-            reactionInstruction.textContent = "Cliquez pour recommencer";
-            reactionBox.style.backgroundColor = var(--primary);
-        }
-
-        // Jeux non implémentés (placeholders)
-        function showMathGame() {
-            alert("Jeu de calcul mental - À implémenter");
-        }
-
-        function showWordGame() {
-            alert("Jeu de mots mêlés - À implémenter");
-        }
-
-        // Traducteur
-        function setTargetLanguage(lang) {
-            currentTargetLang = lang;
-        }
-
-        function translateText() {
-            const text = translationInput.value.trim();
-            if (!text) {
-                alert("Veuillez entrer un texte à traduire");
-                return;
-            }
-            
-            // Traduction simple basée sur le dictionnaire
-            let translatedText = text;
-            
-            // Remplacer les mots connus
-            for (const [key, value] of Object.entries(translationDictionary[currentTargetLang])) {
-                const regex = new RegExp(`\\b${key}\\b`, 'gi');
-                translatedText = translatedText.replace(regex, value);
-            }
-            
-            // Si la traduction n'a pas changé, ajouter un indicateur
-            if (translatedText === text) {
-                translatedText = `[Traduction non disponible] ${text}`;
-            }
-            
-            translationOutput.value = translatedText;
-            
-            // Ajouter à l'historique
-            const translationEntry = {
-                text: text,
-                translation: translatedText,
-                from: 'fr',
-                to: currentTargetLang,
-                date: new Date().toISOString()
-            };
-            
-            translationHistoryData.unshift(translationEntry);
-            saveTranslationHistory();
-            displayTranslationHistory();
-        }
-
-        function speakInputText() {
-            const text = translationInput.value;
-            if (text && 'speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'fr-FR';
-                speechSynthesis.speak(utterance);
-            }
-        }
-
-        function speakOutputText() {
-            const text = translationOutput.value;
-            if (text && 'speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                
-                // Définir la langue en fonction de la langue cible
-                const langMap = {
-                    'en': 'en-US',
-                    'es': 'es-ES',
-                    'sw': 'sw-KE'
-                };
-                
-                utterance.lang = langMap[currentTargetLang] || 'fr-FR';
-                speechSynthesis.speak(utterance);
-            }
-        }
-
-        function copyTranslation() {
-            const text = translationOutput.value;
-            if (text) {
-                navigator.clipboard.writeText(text).then(() => {
-                    alert("Traduction copiée dans le presse-papier !");
-                });
-            }
         }
     </script>
 </body>
