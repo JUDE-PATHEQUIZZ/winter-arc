@@ -892,6 +892,147 @@
             font-weight: bold;
         }
 
+        /* Mini-jeux */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-card {
+            background-color: rgba(74, 111, 165, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .game-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .game-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Traducteur */
+        .translator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .lang-btn {
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .translation-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .translation-input, .translation-output {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text);
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .translation-output {
+            background-color: rgba(107, 186, 167, 0.1);
+        }
+
+        /* Jeu de mémoire */
+        .memory-game {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .memory-card {
+            aspect-ratio: 1;
+            background-color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .memory-card.flipped {
+            background-color: var(--secondary);
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            background-color: var(--success);
+            cursor: default;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        /* Restauration de sauvegarde */
+        .restore-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .backup-info {
+            background-color: rgba(255, 179, 71, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -914,12 +1055,16 @@
                 padding: 8px 10px;
             }
             
-            .stats-grid, .nutrition-grid {
+            .stats-grid, .nutrition-grid, .games-grid {
                 grid-template-columns: 1fr;
             }
             
             .timer-display {
                 font-size: 2.5rem;
+            }
+            
+            .memory-game {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -933,6 +1078,52 @@
                 font-size: 2.5rem;
                 margin: 10px 0;
             }
+        }
+
+        /* Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
         }
     </style>
 </head>
@@ -959,6 +1150,14 @@
                 <button class="nav-btn" data-page="nutrition">
                     <i class="fas fa-apple-alt"></i>
                     <span class="nav-text">Nutrition</span>
+                </button>
+                <button class="nav-btn" data-page="games">
+                    <i class="fas fa-gamepad"></i>
+                    <span class="nav-text">Jeux</span>
+                </button>
+                <button class="nav-btn" data-page="translator">
+                    <i class="fas fa-language"></i>
+                    <span class="nav-text">Traducteur</span>
                 </button>
                 <button class="nav-btn" data-page="community">
                     <i class="fas fa-users"></i>
@@ -1042,6 +1241,12 @@
                             <button class="music-btn" id="next-track">
                                 <i class="fas fa-step-forward"></i>
                             </button>
+                            <button class="music-btn" id="shuffle-track">
+                                <i class="fas fa-random"></i>
+                            </button>
+                        </div>
+                        <div class="progress-bar" style="margin: 10px 0;">
+                            <div class="progress-fill" id="track-progress" style="width: 0%"></div>
                         </div>
                     </div>
                 </div>
@@ -1223,6 +1428,155 @@
             </div>
         </div>
 
+        <!-- Page des jeux -->
+        <div id="games" class="page">
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Mini-jeux</span>
+                </div>
+                
+                <div class="games-grid">
+                    <div class="game-card" id="memory-game-btn">
+                        <div class="game-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="game-name">Mémoire</div>
+                        <div class="game-desc">Testez votre mémoire avec ce jeu de cartes</div>
+                    </div>
+                    
+                    <div class="game-card" id="reaction-game-btn">
+                        <div class="game-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="game-name">Réaction</div>
+                        <div class="game-desc">Testez votre temps de réaction</div>
+                    </div>
+                    
+                    <div class="game-card" id="math-game-btn">
+                        <div class="game-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="game-name">Calcul mental</div>
+                        <div class="game-desc">Améliorez vos compétences en calcul</div>
+                    </div>
+                    
+                    <div class="game-card" id="word-game-btn">
+                        <div class="game-icon">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <div class="game-name">Mots mêlés</div>
+                        <div class="game-desc">Trouvez des mots dans une grille</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Jeu de mémoire -->
+            <div class="card" id="memory-game-container" style="display: none;">
+                <div class="card-title">
+                    <i class="fas fa-brain"></i>
+                    <span>Jeu de mémoire</span>
+                </div>
+                
+                <div class="game-stats">
+                    <div>Coups: <span id="memory-moves">0</span></div>
+                    <div>Temps: <span id="memory-time">0s</span></div>
+                    <div>Score: <span id="memory-score">0</span></div>
+                </div>
+                
+                <div class="memory-game" id="memory-game-board">
+                    <!-- Les cartes seront générées par JavaScript -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn btn-primary" id="memory-restart">
+                        <i class="fas fa-redo"></i> Recommencer
+                    </button>
+                    <button class="btn btn-danger" id="memory-back">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Jeu de réaction -->
+            <div class="card" id="reaction-game-container" style="display: none;">
+                <div class="card-title">
+                    <i class="fas fa-bolt"></i>
+                    <span>Test de réaction</span>
+                </div>
+                
+                <div style="text-align: center; padding: 40px 0;">
+                    <div id="reaction-instruction" style="font-size: 1.2rem; margin-bottom: 20px;">
+                        Cliquez quand le carré devient vert
+                    </div>
+                    <div id="reaction-box" style="width: 200px; height: 200px; background-color: var(--primary); margin: 0 auto; border-radius: 8px; cursor: pointer;"></div>
+                    <div style="margin-top: 20px;">
+                        <div>Temps de réaction: <span id="reaction-time">-</span> ms</div>
+                        <div>Meilleur score: <span id="best-reaction">-</span> ms</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn btn-primary" id="reaction-start">
+                        <i class="fas fa-play"></i> Commencer
+                    </button>
+                    <button class="btn btn-danger" id="reaction-back">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page du traducteur -->
+        <div id="translator" class="page">
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-language"></i>
+                    <span>Traducteur</span>
+                </div>
+                
+                <div class="translator-container">
+                    <div class="language-selector">
+                        <button class="lang-btn active" data-lang="fr">Français</button>
+                        <button class="lang-btn" data-lang="en">English</button>
+                        <button class="lang-btn" data-lang="sw">Kiswahili</button>
+                        <button class="lang-btn" data-lang="es">Español</button>
+                    </div>
+                    
+                    <div class="translation-area">
+                        <textarea class="translation-input" id="translation-input" placeholder="Tapez votre texte ici..."></textarea>
+                        <button class="btn btn-primary" id="translate-btn">
+                            <i class="fas fa-exchange-alt"></i> Traduire
+                        </button>
+                        <textarea class="translation-output" id="translation-output" placeholder="Traduction apparaîtra ici..." readonly></textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-success" id="speak-input">
+                            <i class="fas fa-volume-up"></i> Écouter
+                        </button>
+                        <button class="btn btn-success" id="speak-output">
+                            <i class="fas fa-volume-up"></i> Écouter
+                        </button>
+                        <button class="btn btn-primary" id="copy-output">
+                            <i class="fas fa-copy"></i> Copier
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-history"></i>
+                    <span>Historique des traductions</span>
+                </div>
+                
+                <div id="translation-history">
+                    <!-- L'historique des traductions sera inséré ici par JavaScript -->
+                </div>
+            </div>
+        </div>
+
         <!-- Page de communauté -->
         <div id="community" class="page">
             <div class="card">
@@ -1353,12 +1707,23 @@
             <div class="card">
                 <div class="card-title">
                     <i class="fas fa-download"></i>
-                    <span>Export des données</span>
+                    <span>Sauvegarde et restauration</span>
                 </div>
-                <p>Exportez vos données de progression pour les sauvegarder ou les partager.</p>
-                <button class="btn btn-primary" id="export-data" style="margin-top: 15px;">
-                    <i class="fas fa-file-export"></i> Exporter mes données
-                </button>
+                
+                <div class="backup-info">
+                    <p><strong>Conseil de sauvegarde:</strong> Exportez régulièrement vos données pour ne pas perdre votre progression.</p>
+                </div>
+                
+                <div class="restore-section">
+                    <button class="btn btn-primary" id="export-data">
+                        <i class="fas fa-file-export"></i> Exporter mes données
+                    </button>
+                    
+                    <input type="file" id="import-file" class="file-input" accept=".json">
+                    <label for="import-file" class="file-label">
+                        <i class="fas fa-file-import"></i> Importer une sauvegarde
+                    </label>
+                </div>
             </div>
             
             <div class="card">
@@ -1534,6 +1899,85 @@
             { id: "perfectionist", name: "Perfectionniste", icon: "fa-gem", description: "100% des exercices d'une semaine complétés" }
         ];
 
+        // Dictionnaire de traduction
+        const translationDictionary = {
+            'fr': {
+                'hello': 'bonjour',
+                'good morning': 'bonjour',
+                'good evening': 'bonsoir',
+                'how are you': 'comment allez-vous',
+                'thank you': 'merci',
+                'goodbye': 'au revoir',
+                'please': 's\'il vous plaît',
+                'yes': 'oui',
+                'no': 'non',
+                'water': 'eau',
+                'food': 'nourriture',
+                'exercise': 'exercice',
+                'training': 'entraînement',
+                'strong': 'fort',
+                'health': 'santé',
+                'energy': 'énergie',
+                'motivation': 'motivation'
+            },
+            'en': {
+                'bonjour': 'hello',
+                'bonsoir': 'good evening',
+                'comment allez-vous': 'how are you',
+                'merci': 'thank you',
+                'au revoir': 'goodbye',
+                's\'il vous plaît': 'please',
+                'oui': 'yes',
+                'non': 'no',
+                'eau': 'water',
+                'nourriture': 'food',
+                'exercice': 'exercise',
+                'entraînement': 'training',
+                'fort': 'strong',
+                'santé': 'health',
+                'énergie': 'energy',
+                'motivation': 'motivation'
+            },
+            'sw': {
+                'hello': 'hujambo',
+                'good morning': 'habari za asubuhi',
+                'good evening': 'habari za jioni',
+                'how are you': 'habari yako',
+                'thank you': 'asante',
+                'goodbye': 'kwaheri',
+                'please': 'tafadhali',
+                'yes': 'ndiyo',
+                'no': 'hapana',
+                'water': 'maji',
+                'food': 'chakula',
+                'exercise': 'mazoezi',
+                'training': 'mafunzo',
+                'strong': 'imara',
+                'health': 'afya',
+                'energy': 'nishati',
+                'motivation': 'motisha'
+            },
+            'es': {
+                'hello': 'hola',
+                'good morning': 'buenos días',
+                'good evening': 'buenas tardes',
+                'how are you': 'cómo estás',
+                'thank you': 'gracias',
+                'goodbye': 'adiós',
+                'please': 'por favor',
+                'yes': 'sí',
+                'no': 'no',
+                'water': 'agua',
+                'food': 'comida',
+                'exercise': 'ejercicio',
+                'training': 'entrenamiento',
+                'strong': 'fuerte',
+                'health': 'salud',
+                'energy': 'energía',
+                'motivation': 'motivación'
+            }
+        };
+
         // Éléments DOM
         const pages = document.querySelectorAll('.page');
         const navButtons = document.querySelectorAll('.nav-btn');
@@ -1577,6 +2021,7 @@
         const progressPhotos = document.getElementById('progress-photos');
         const photoUpload = document.getElementById('photo-upload');
         const exportDataBtn = document.getElementById('export-data');
+        const importFile = document.getElementById('import-file');
         const weekNotes = document.getElementById('week-notes');
         const saveNotesBtn = document.getElementById('save-notes');
         const musicFile = document.getElementById('music-file');
@@ -1594,6 +2039,8 @@
         const playTrackBtn = document.getElementById('play-track');
         const prevTrackBtn = document.getElementById('prev-track');
         const nextTrackBtn = document.getElementById('next-track');
+        const shuffleTrackBtn = document.getElementById('shuffle-track');
+        const trackProgress = document.getElementById('track-progress');
         const caloriesConsumed = document.getElementById('calories-consumed');
         const caloriesBurned = document.getElementById('calories-burned');
         const proteinIntake = document.getElementById('protein-intake');
@@ -1610,6 +2057,32 @@
         const weightGoal = document.getElementById('weight-goal');
         const workoutDurationGoal = document.getElementById('workout-duration-goal');
         const saveAdvancedSettingsBtn = document.getElementById('save-advanced-settings');
+        const memoryGameBtn = document.getElementById('memory-game-btn');
+        const reactionGameBtn = document.getElementById('reaction-game-btn');
+        const mathGameBtn = document.getElementById('math-game-btn');
+        const wordGameBtn = document.getElementById('word-game-btn');
+        const memoryGameContainer = document.getElementById('memory-game-container');
+        const reactionGameContainer = document.getElementById('reaction-game-container');
+        const memoryGameBoard = document.getElementById('memory-game-board');
+        const memoryMoves = document.getElementById('memory-moves');
+        const memoryTime = document.getElementById('memory-time');
+        const memoryScore = document.getElementById('memory-score');
+        const memoryRestart = document.getElementById('memory-restart');
+        const memoryBack = document.getElementById('memory-back');
+        const reactionInstruction = document.getElementById('reaction-instruction');
+        const reactionBox = document.getElementById('reaction-box');
+        const reactionTime = document.getElementById('reaction-time');
+        const bestReaction = document.getElementById('best-reaction');
+        const reactionStart = document.getElementById('reaction-start');
+        const reactionBack = document.getElementById('reaction-back');
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const translationInput = document.getElementById('translation-input');
+        const translationOutput = document.getElementById('translation-output');
+        const translateBtn = document.getElementById('translate-btn');
+        const speakInput = document.getElementById('speak-input');
+        const speakOutput = document.getElementById('speak-output');
+        const copyOutput = document.getElementById('copy-output');
+        const translationHistory = document.getElementById('translation-history');
 
         // Variables d'état
         let currentWeekNumber = 1;
@@ -1639,6 +2112,7 @@
             posts: [],
             ranking: []
         };
+        let translationHistoryData = JSON.parse(localStorage.getItem('translationHistory')) || [];
         let currentTimer = null;
         let currentExerciseId = null;
         let timerInterval = null;
@@ -1649,6 +2123,22 @@
         let isPlaying = false;
         let spotifyConnected = false;
         let spotifyPlayerInstance = null;
+        let currentSourceLang = 'fr';
+        let currentTargetLang = 'en';
+        let memoryGameState = {
+            cards: [],
+            flippedCards: [],
+            matchedCards: [],
+            moves: 0,
+            time: 0,
+            timer: null,
+            gameStarted: false
+        };
+        let reactionGameState = {
+            waiting: false,
+            startTime: 0,
+            bestTime: localStorage.getItem('bestReactionTime') || null
+        };
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
@@ -1659,6 +2149,7 @@
             loadProgressPhotos();
             loadNutritionData();
             loadCommunityData();
+            loadTranslationHistory();
             
             // Afficher la page d'accueil
             showPage('home');
@@ -1690,6 +2181,9 @@
             // Afficher le classement
             displayCommunityRanking();
             
+            // Afficher l'historique des traductions
+            displayTranslationHistory();
+            
             // Configurer les écouteurs d'événements
             setupEventListeners();
             
@@ -1701,6 +2195,11 @@
             
             // Mettre à jour le niveau de l'utilisateur
             updateUserLevel();
+            
+            // Mettre à jour le meilleur temps de réaction
+            if (reactionGameState.bestTime) {
+                bestReaction.textContent = reactionGameState.bestTime;
+            }
         });
 
         // Configuration des écouteurs d'événements
@@ -1753,6 +2252,7 @@
                     localStorage.removeItem('progressPhotos');
                     localStorage.removeItem('nutritionData');
                     localStorage.removeItem('communityData');
+                    localStorage.removeItem('translationHistory');
                     completedExercises = {};
                     workoutHistoryData = [];
                     earnedBadges = [];
@@ -1769,6 +2269,7 @@
                         posts: [],
                         ranking: []
                     };
+                    translationHistoryData = [];
                     loadProgress();
                     displayTodayProgram();
                     displayWeekProgram();
@@ -1778,6 +2279,7 @@
                     displayNutritionData();
                     displayCommunityPosts();
                     displayCommunityRanking();
+                    displayTranslationHistory();
                     alert("Progression réinitialisée avec succès !");
                 }
             });
@@ -1828,6 +2330,22 @@
             // Export des données
             exportDataBtn.addEventListener('click', exportData);
             
+            // Import des données
+            importFile.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        try {
+                            const importedData = JSON.parse(event.target.result);
+                            restoreData(importedData);
+                        } catch (error) {
+                            alert("Erreur lors de l'importation des données. Le fichier est peut-être corrompu.");
+                        }
+                    };
+                    reader.readAsText(e.target.files[0]);
+                }
+            });
+            
             // Notes de la semaine
             saveNotesBtn.addEventListener('click', saveWeekNotes);
             
@@ -1851,6 +2369,7 @@
             playTrackBtn.addEventListener('click', toggleSpotifyPlayback);
             prevTrackBtn.addEventListener('click', prevSpotifyTrack);
             nextTrackBtn.addEventListener('click', nextSpotifyTrack);
+            shuffleTrackBtn.addEventListener('click', shuffleSpotifyTracks);
             
             // Nutrition
             addNutritionBtn.addEventListener('click', addNutritionEntry);
@@ -1861,6 +2380,33 @@
             
             // Paramètres avancés
             saveAdvancedSettingsBtn.addEventListener('click', saveAdvancedSettings);
+            
+            // Jeux
+            memoryGameBtn.addEventListener('click', showMemoryGame);
+            reactionGameBtn.addEventListener('click', showReactionGame);
+            mathGameBtn.addEventListener('click', showMathGame);
+            wordGameBtn.addEventListener('click', showWordGame);
+            memoryRestart.addEventListener('click', initMemoryGame);
+            memoryBack.addEventListener('click', hideMemoryGame);
+            reactionStart.addEventListener('click', startReactionGame);
+            reactionBack.addEventListener('click', hideReactionGame);
+            reactionBox.addEventListener('click', handleReactionClick);
+            
+            // Traducteur
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setTargetLanguage(lang);
+                    
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            translateBtn.addEventListener('click', translateText);
+            speakInput.addEventListener('click', speakInputText);
+            speakOutput.addEventListener('click', speakOutputText);
+            copyOutput.addEventListener('click', copyTranslation);
         }
 
         // Afficher une page spécifique
@@ -1869,6 +2415,12 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
+            
+            // Masquer les jeux si on change de page
+            if (pageId !== 'games') {
+                hideMemoryGame();
+                hideReactionGame();
+            }
             
             // Mettre à jour les données si nécessaire
             if (pageId === 'stats') {
@@ -1882,6 +2434,8 @@
             } else if (pageId === 'community') {
                 displayCommunityPosts();
                 displayCommunityRanking();
+            } else if (pageId === 'translator') {
+                displayTranslationHistory();
             }
         }
 
@@ -2436,6 +2990,47 @@
             alert("Post publié avec succès !");
         }
 
+        // Charger l'historique des traductions
+        function loadTranslationHistory() {
+            const savedHistory = localStorage.getItem('translationHistory');
+            if (savedHistory) {
+                translationHistoryData = JSON.parse(savedHistory);
+            }
+        }
+
+        // Sauvegarder l'historique des traductions
+        function saveTranslationHistory() {
+            localStorage.setItem('translationHistory', JSON.stringify(translationHistoryData));
+        }
+
+        // Afficher l'historique des traductions
+        function displayTranslationHistory() {
+            translationHistory.innerHTML = '';
+            
+            if (translationHistoryData.length === 0) {
+                translationHistory.innerHTML = '<p style="text-align: center; color: var(--text-light);">Aucune traduction enregistrée</p>';
+                return;
+            }
+            
+            // Afficher les 10 dernières traductions
+            const recentTranslations = translationHistoryData.slice(0, 10);
+            
+            recentTranslations.forEach(translation => {
+                const translationElement = document.createElement('div');
+                translationElement.className = 'history-item';
+                translationElement.innerHTML = `
+                    <div>
+                        <div class="history-date">${translation.text}</div>
+                        <div class="history-session">${translation.translation}</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.8rem; color: var(--text-light);">${translation.from} → ${translation.to}</span>
+                    </div>
+                `;
+                translationHistory.appendChild(translationElement);
+            });
+        }
+
         // Mettre à jour la progression du jour
         function updateDailyProgress() {
             const weekData = trainingProgram[currentWeekNumber];
@@ -2784,6 +3379,7 @@
                 progressPhotos: progressPhotosData.length,
                 nutritionData: nutritionData,
                 communityData: communityData,
+                translationHistory: translationHistoryData,
                 exportDate: new Date().toISOString()
             };
             
@@ -2800,6 +3396,55 @@
             URL.revokeObjectURL(url);
             
             alert("Données exportées avec succès !");
+        }
+
+        // Restaurer les données
+        function restoreData(importedData) {
+            if (confirm("Voulez-vous vraiment restaurer cette sauvegarde ? Vos données actuelles seront écrasées.")) {
+                try {
+                    if (importedData.completedExercises) completedExercises = importedData.completedExercises;
+                    if (importedData.workoutHistory) workoutHistoryData = importedData.workoutHistory;
+                    if (importedData.earnedBadges) earnedBadges = importedData.earnedBadges;
+                    if (importedData.userSettings) userSettings = importedData.userSettings;
+                    if (importedData.weekNotes) weekNotesData = importedData.weekNotes;
+                    if (importedData.nutritionData) nutritionData = importedData.nutritionData;
+                    if (importedData.communityData) communityData = importedData.communityData;
+                    if (importedData.translationHistory) translationHistoryData = importedData.translationHistory;
+                    
+                    // Sauvegarder les données restaurées
+                    localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
+                    localStorage.setItem('workoutHistory', JSON.stringify(workoutHistoryData));
+                    localStorage.setItem('earnedBadges', JSON.stringify(earnedBadges));
+                    localStorage.setItem('userSettings', JSON.stringify(userSettings));
+                    localStorage.setItem('weekNotes', JSON.stringify(weekNotesData));
+                    localStorage.setItem('nutritionData', JSON.stringify(nutritionData));
+                    localStorage.setItem('communityData', JSON.stringify(communityData));
+                    localStorage.setItem('translationHistory', JSON.stringify(translationHistoryData));
+                    
+                    // Recharger l'interface
+                    loadProgress();
+                    loadUserSettings();
+                    loadWeekNotes();
+                    loadNutritionData();
+                    loadCommunityData();
+                    loadTranslationHistory();
+                    
+                    displayTodayProgram();
+                    displayWeekProgram();
+                    displayStats();
+                    displayBadges();
+                    displayWorkoutHistory();
+                    displayNutritionData();
+                    displayCommunityPosts();
+                    displayCommunityRanking();
+                    displayTranslationHistory();
+                    updateUserLevel();
+                    
+                    alert("Sauvegarde restaurée avec succès !");
+                } catch (error) {
+                    alert("Erreur lors de la restauration des données.");
+                }
+            }
         }
 
         // Charger la musique
@@ -2868,6 +3513,17 @@
             trackName.textContent = "Workout Motivation Mix";
             trackArtist.textContent = "Various Artists";
             
+            // Simuler la progression de la piste
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                if (progress < 100) {
+                    progress += 0.5;
+                    trackProgress.style.width = `${progress}%`;
+                } else {
+                    clearInterval(progressInterval);
+                }
+            }, 1000);
+            
             alert("Connecté à Spotify avec succès !");
         }
 
@@ -2911,6 +3567,16 @@
             alert("Piste suivante");
         }
 
+        // Mélanger les pistes Spotify
+        function shuffleSpotifyTracks() {
+            if (!spotifyConnected) {
+                alert("Veuillez d'abord vous connecter à Spotify");
+                return;
+            }
+            
+            alert("Lecture aléatoire activée");
+        }
+
         // Sauvegarder les paramètres avancés
         function saveAdvancedSettings() {
             userSettings.username = usernameInput.value;
@@ -2940,6 +3606,278 @@
             
             profileLevel.textContent = `Niveau ${level} - ${levelName}`;
             profilePoints.textContent = `${userSettings.points} points`;
+        }
+
+        // Jeu de mémoire
+        function showMemoryGame() {
+            document.querySelector('.games-grid').style.display = 'none';
+            memoryGameContainer.style.display = 'block';
+            initMemoryGame();
+        }
+
+        function hideMemoryGame() {
+            document.querySelector('.games-grid').style.display = 'grid';
+            memoryGameContainer.style.display = 'none';
+            stopMemoryGame();
+        }
+
+        function initMemoryGame() {
+            // Réinitialiser l'état du jeu
+            memoryGameState = {
+                cards: [],
+                flippedCards: [],
+                matchedCards: [],
+                moves: 0,
+                time: 0,
+                timer: null,
+                gameStarted: false
+            };
+            
+            // Mettre à jour l'affichage
+            memoryMoves.textContent = '0';
+            memoryTime.textContent = '0s';
+            memoryScore.textContent = '0';
+            
+            // Créer les cartes
+            const symbols = ['🍎', '🍌', '🍒', '🍇', '🍊', '🍓', '🍉', '🍑'];
+            const cards = [...symbols, ...symbols]; // Dupliquer pour avoir des paires
+            
+            // Mélanger les cartes
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            
+            memoryGameState.cards = cards;
+            
+            // Afficher les cartes
+            memoryGameBoard.innerHTML = '';
+            cards.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.index = index;
+                card.dataset.symbol = symbol;
+                card.textContent = '?';
+                card.addEventListener('click', handleMemoryCardClick);
+                memoryGameBoard.appendChild(card);
+            });
+        }
+
+        function handleMemoryCardClick(e) {
+            const card = e.target;
+            const index = parseInt(card.dataset.index);
+            
+            // Ne pas permettre de cliquer sur une carte déjà retournée ou appariée
+            if (card.classList.contains('flipped') || card.classList.contains('matched')) {
+                return;
+            }
+            
+            // Démarrer le timer si c'est la première carte
+            if (!memoryGameState.gameStarted) {
+                startMemoryTimer();
+                memoryGameState.gameStarted = true;
+            }
+            
+            // Retourner la carte
+            card.textContent = card.dataset.symbol;
+            card.classList.add('flipped');
+            memoryGameState.flippedCards.push({ card, index, symbol: card.dataset.symbol });
+            
+            // Vérifier si deux cartes sont retournées
+            if (memoryGameState.flippedCards.length === 2) {
+                memoryGameState.moves++;
+                memoryMoves.textContent = memoryGameState.moves;
+                
+                const [card1, card2] = memoryGameState.flippedCards;
+                
+                if (card1.symbol === card2.symbol) {
+                    // Cartes identiques - les marquer comme appariées
+                    card1.card.classList.add('matched');
+                    card2.card.classList.add('matched');
+                    memoryGameState.matchedCards.push(card1, card2);
+                    
+                    // Mettre à jour le score
+                    memoryGameState.score = memoryGameState.matchedCards.length / 2;
+                    memoryScore.textContent = memoryGameState.score;
+                    
+                    // Vérifier si le jeu est terminé
+                    if (memoryGameState.matchedCards.length === memoryGameState.cards.length) {
+                        setTimeout(() => {
+                            alert(`Félicitations ! Vous avez terminé le jeu en ${memoryGameState.moves} coups et ${memoryGameState.time} secondes !`);
+                            stopMemoryGame();
+                        }, 500);
+                    }
+                } else {
+                    // Cartes différentes - les retourner après un délai
+                    setTimeout(() => {
+                        card1.card.textContent = '?';
+                        card2.card.textContent = '?';
+                        card1.card.classList.remove('flipped');
+                        card2.card.classList.remove('flipped');
+                    }, 1000);
+                }
+                
+                // Vider les cartes retournées
+                memoryGameState.flippedCards = [];
+            }
+        }
+
+        function startMemoryTimer() {
+            memoryGameState.timer = setInterval(() => {
+                memoryGameState.time++;
+                memoryTime.textContent = `${memoryGameState.time}s`;
+            }, 1000);
+        }
+
+        function stopMemoryGame() {
+            if (memoryGameState.timer) {
+                clearInterval(memoryGameState.timer);
+                memoryGameState.timer = null;
+            }
+        }
+
+        // Jeu de réaction
+        function showReactionGame() {
+            document.querySelector('.games-grid').style.display = 'none';
+            reactionGameContainer.style.display = 'block';
+            resetReactionGame();
+        }
+
+        function hideReactionGame() {
+            document.querySelector('.games-grid').style.display = 'grid';
+            reactionGameContainer.style.display = 'none';
+            resetReactionGame();
+        }
+
+        function resetReactionGame() {
+            reactionGameState.waiting = false;
+            reactionBox.style.backgroundColor = var(--primary);
+            reactionInstruction.textContent = "Cliquez quand le carré devient vert";
+            reactionTime.textContent = "-";
+        }
+
+        function startReactionGame() {
+            if (reactionGameState.waiting) return;
+            
+            reactionInstruction.textContent = "Préparez-vous...";
+            reactionBox.style.backgroundColor = var(--warning);
+            
+            // Délai aléatoire entre 2 et 5 secondes
+            const delay = Math.random() * 3000 + 2000;
+            
+            setTimeout(() => {
+                reactionInstruction.textContent = "CLIQUEZ MAINTENANT !";
+                reactionBox.style.backgroundColor = var(--success);
+                reactionGameState.waiting = true;
+                reactionGameState.startTime = Date.now();
+            }, delay);
+        }
+
+        function handleReactionClick() {
+            if (!reactionGameState.waiting) {
+                startReactionGame();
+                return;
+            }
+            
+            const reactionTimeMs = Date.now() - reactionGameState.startTime;
+            reactionTime.textContent = reactionTimeMs;
+            
+            // Mettre à jour le meilleur score
+            if (!reactionGameState.bestTime || reactionTimeMs < reactionGameState.bestTime) {
+                reactionGameState.bestTime = reactionTimeMs;
+                bestReaction.textContent = reactionTimeMs;
+                localStorage.setItem('bestReactionTime', reactionTimeMs);
+            }
+            
+            reactionGameState.waiting = false;
+            reactionInstruction.textContent = "Cliquez pour recommencer";
+            reactionBox.style.backgroundColor = var(--primary);
+        }
+
+        // Jeux non implémentés (placeholders)
+        function showMathGame() {
+            alert("Jeu de calcul mental - À implémenter");
+        }
+
+        function showWordGame() {
+            alert("Jeu de mots mêlés - À implémenter");
+        }
+
+        // Traducteur
+        function setTargetLanguage(lang) {
+            currentTargetLang = lang;
+        }
+
+        function translateText() {
+            const text = translationInput.value.trim();
+            if (!text) {
+                alert("Veuillez entrer un texte à traduire");
+                return;
+            }
+            
+            // Traduction simple basée sur le dictionnaire
+            let translatedText = text;
+            
+            // Remplacer les mots connus
+            for (const [key, value] of Object.entries(translationDictionary[currentTargetLang])) {
+                const regex = new RegExp(`\\b${key}\\b`, 'gi');
+                translatedText = translatedText.replace(regex, value);
+            }
+            
+            // Si la traduction n'a pas changé, ajouter un indicateur
+            if (translatedText === text) {
+                translatedText = `[Traduction non disponible] ${text}`;
+            }
+            
+            translationOutput.value = translatedText;
+            
+            // Ajouter à l'historique
+            const translationEntry = {
+                text: text,
+                translation: translatedText,
+                from: 'fr',
+                to: currentTargetLang,
+                date: new Date().toISOString()
+            };
+            
+            translationHistoryData.unshift(translationEntry);
+            saveTranslationHistory();
+            displayTranslationHistory();
+        }
+
+        function speakInputText() {
+            const text = translationInput.value;
+            if (text && 'speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'fr-FR';
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function speakOutputText() {
+            const text = translationOutput.value;
+            if (text && 'speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                // Définir la langue en fonction de la langue cible
+                const langMap = {
+                    'en': 'en-US',
+                    'es': 'es-ES',
+                    'sw': 'sw-KE'
+                };
+                
+                utterance.lang = langMap[currentTargetLang] || 'fr-FR';
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        function copyTranslation() {
+            const text = translationOutput.value;
+            if (text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert("Traduction copiée dans le presse-papier !");
+                });
+            }
         }
     </script>
 </body>
